@@ -1,11 +1,13 @@
 
 package Main;
 
+import form.CambiaPanel;
 import form.PnlAddInventario;
 import form.PnlCancelados;
 import form.PnlInventario;
 import form.PnlSolicitudes;
 import form.PnlSolicitudesActivas;
+import java.awt.Panel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -13,6 +15,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import menu.MenuItem;
+import form.CambiaPanel;
+
 /**
  *
  * @author ross
@@ -38,27 +42,25 @@ public class Main extends javax.swing.JFrame {
         MenuItem menuPrestamoUno = new MenuItem(iconSubMenu, "Solicitudes de Préstamos", new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-                panelBody.add(new PnlSolicitudes());
-                panelBody.repaint();
-                panelBody.revalidate();
+                new CambiaPanel(panelBody, new form.PnlSolicitudes());
+                
+              
             }
         });
         
         MenuItem menuPrestamoDos = new MenuItem(iconSubMenu, "Prestamos Activos", new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-                panelBody.add(new PnlSolicitudesActivas());
-                panelBody.repaint();
-                panelBody.revalidate();
+                new CambiaPanel(panelBody, new form.PnlSolicitudesActivas());
+               
             }
         });
         
         MenuItem menuPrestamoTres = new MenuItem(iconSubMenu, "Préstamos Cancelados", new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                panelBody.add(new PnlCancelados());
-                panelBody.repaint();
-                panelBody.revalidate();
+                new CambiaPanel(panelBody, new form.PnlCancelados());
+             
                 
             }
         });
@@ -66,17 +68,13 @@ public class Main extends javax.swing.JFrame {
         MenuItem menuInventarioUno = new MenuItem(iconSubMenu, "Inventario existente", new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                panelBody.add(new PnlInventario());
-                panelBody.repaint();
-                panelBody.revalidate();
+                new CambiaPanel( panelBody,new form.PnlInventario());
             }
         });
         MenuItem menuInventarioDos = new MenuItem(iconSubMenu,"Agregar al inventario", new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                panelBody.add(new PnlAddInventario());
-                panelBody.repaint();
-                panelBody.revalidate();
+                new CambiaPanel(panelBody, new form.PnlAddInventario());
             }
         });
         
@@ -142,10 +140,7 @@ public class Main extends javax.swing.JFrame {
         panelMenu.setLayout(panelMenuLayout);
         panelMenuLayout.setHorizontalGroup(
             panelMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelMenuLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 225, Short.MAX_VALUE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
         );
         panelMenuLayout.setVerticalGroup(
             panelMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
