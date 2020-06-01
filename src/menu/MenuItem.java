@@ -62,7 +62,9 @@ public class MenuItem extends javax.swing.JPanel {
             }
         });
 
-        lbName.setText("Menu Name Here ...");
+        lbName.setFont(new java.awt.Font("Roboto Lt", 1, 15)); // NOI18N
+        lbName.setForeground(new java.awt.Color(52, 45, 146));
+        lbName.setText("Menu...");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -139,6 +141,8 @@ public class MenuItem extends javax.swing.JPanel {
         } catch (Exception e) {
         }
     }
+    
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel lbIcon;

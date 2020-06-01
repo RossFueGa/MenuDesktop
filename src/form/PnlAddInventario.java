@@ -1,6 +1,7 @@
 
 package form;
-
+import form.CambiaPanel;
+import Main.Main;
 /**
  *
  * @author ross
@@ -23,67 +24,146 @@ public class PnlAddInventario extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jPanel1 = new javax.swing.JPanel();
-        jPanel2 = new javax.swing.JPanel();
+        labelAmplificador = new javax.swing.JLabel();
+        labelLaptop = new javax.swing.JLabel();
+        labelBocina = new javax.swing.JLabel();
+        labelProyectores = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
 
-        jLabel1.setBackground(new java.awt.Color(155, 156, 237));
-        jLabel1.setFont(new java.awt.Font("sansserif", 1, 18)); // NOI18N
-        jLabel1.setText("                                            Agreagar al Inventario");
-        jLabel1.setOpaque(true);
+        setBackground(new java.awt.Color(246, 246, 246));
 
-        jPanel1.setBackground(new java.awt.Color(228, 141, 54));
+        labelAmplificador.setBackground(new java.awt.Color(201, 116, 29));
+        labelAmplificador.setForeground(new java.awt.Color(206, 74, 74));
+        labelAmplificador.setIcon(new javax.swing.ImageIcon(getClass().getResource("/menu/speaker.png"))); // NOI18N
+        labelAmplificador.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                labelAmplificadorMouseClicked(evt);
+            }
+        });
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 373, Short.MAX_VALUE)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
+        labelLaptop.setBackground(new java.awt.Color(201, 116, 29));
+        labelLaptop.setForeground(new java.awt.Color(206, 74, 74));
+        labelLaptop.setIcon(new javax.swing.ImageIcon(getClass().getResource("/menu/lapTop.png"))); // NOI18N
+        labelLaptop.setText("jLabel1");
+        labelLaptop.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                labelLaptopMouseClicked(evt);
+            }
+        });
 
-        jPanel2.setBackground(new java.awt.Color(128, 77, 49));
+        labelBocina.setBackground(new java.awt.Color(201, 116, 29));
+        labelBocina.setForeground(new java.awt.Color(206, 74, 74));
+        labelBocina.setIcon(new javax.swing.ImageIcon(getClass().getResource("/menu/bocina.png"))); // NOI18N
+        labelBocina.setText("jLabel1");
+        labelBocina.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                labelBocinaMouseClicked(evt);
+            }
+        });
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 139, Short.MAX_VALUE)
-        );
+        labelProyectores.setBackground(new java.awt.Color(201, 116, 29));
+        labelProyectores.setForeground(new java.awt.Color(206, 74, 74));
+        labelProyectores.setIcon(new javax.swing.ImageIcon(getClass().getResource("/menu/projector.png"))); // NOI18N
+        labelProyectores.setText("jLabel1");
+        labelProyectores.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                labelProyectoresMouseClicked(evt);
+            }
+        });
+
+        jLabel5.setText("Amplificadores");
+
+        jLabel6.setText("Laptop");
+
+        jLabel7.setText("Proyectores");
+
+        jLabel8.setText("Bocina");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 753, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(175, 175, 175)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(labelProyectores, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(22, 22, 22)
+                        .addComponent(jLabel7))
+                    .addComponent(labelAmplificador, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(11, 11, 11)
+                        .addComponent(jLabel5)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 214, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(labelLaptop, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel6)
+                        .addGap(46, 46, 46))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(40, 40, 40)
+                            .addComponent(jLabel8))
+                        .addComponent(labelBocina, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(175, 175, 175))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(223, Short.MAX_VALUE))
+                .addGap(77, 77, 77)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(labelBocina, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(27, 27, 27)
+                        .addComponent(jLabel8))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(labelAmplificador, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(19, 19, 19)
+                        .addComponent(jLabel5)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(labelProyectores, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel7)
+                        .addGap(49, 49, 49))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(labelLaptop, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel6)
+                        .addGap(41, 41, 41))))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void labelAmplificadorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelAmplificadorMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_labelAmplificadorMouseClicked
+
+    private void labelBocinaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelBocinaMouseClicked
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_labelBocinaMouseClicked
+
+    private void labelProyectoresMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelProyectoresMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_labelProyectoresMouseClicked
+
+    private void labelLaptopMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelLaptopMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_labelLaptopMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel labelAmplificador;
+    private javax.swing.JLabel labelBocina;
+    private javax.swing.JLabel labelLaptop;
+    private javax.swing.JLabel labelProyectores;
     // End of variables declaration//GEN-END:variables
 }

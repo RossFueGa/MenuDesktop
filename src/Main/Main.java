@@ -28,7 +28,7 @@ public class Main extends javax.swing.JFrame {
      */
     public Main() {
         initComponents();
-        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        //this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         execute(); 
     }
 
@@ -43,8 +43,6 @@ public class Main extends javax.swing.JFrame {
             @Override
             public void actionPerformed(ActionEvent ae) {
                 new CambiaPanel(panelBody, new form.PnlSolicitudes());
-                
-              
             }
         });
         
@@ -52,7 +50,6 @@ public class Main extends javax.swing.JFrame {
             @Override
             public void actionPerformed(ActionEvent ae) {
                 new CambiaPanel(panelBody, new form.PnlSolicitudesActivas());
-               
             }
         });
         
@@ -60,8 +57,6 @@ public class Main extends javax.swing.JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 new CambiaPanel(panelBody, new form.PnlCancelados());
-             
-                
             }
         });
         //Submenu  
@@ -118,7 +113,7 @@ public class Main extends javax.swing.JFrame {
         panelHeader.setLayout(panelHeaderLayout);
         panelHeaderLayout.setHorizontalGroup(
             panelHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 861, Short.MAX_VALUE)
+            .addGap(0, 1090, Short.MAX_VALUE)
         );
         panelHeaderLayout.setVerticalGroup(
             panelHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -144,7 +139,7 @@ public class Main extends javax.swing.JFrame {
         );
         panelMenuLayout.setVerticalGroup(
             panelMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 393, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 497, Short.MAX_VALUE)
         );
 
         getContentPane().add(panelMenu, java.awt.BorderLayout.LINE_START);
@@ -153,7 +148,7 @@ public class Main extends javax.swing.JFrame {
         panelBody.setLayout(new java.awt.BorderLayout());
         getContentPane().add(panelBody, java.awt.BorderLayout.CENTER);
 
-        setSize(new java.awt.Dimension(871, 473));
+        setSize(new java.awt.Dimension(1100, 577));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
