@@ -26,21 +26,22 @@ public class PnlCancelados extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
 
         jLabel1.setBackground(new java.awt.Color(155, 156, 237));
-        jLabel1.setFont(new java.awt.Font("sansserif", 1, 18)); // NOI18N
-        jLabel1.setText("                                           Solicitudes Canceladas");
+        jLabel1.setFont(new java.awt.Font("Roboto Lt", 1, 18)); // NOI18N
+        jLabel1.setForeground(java.awt.Color.white);
+        jLabel1.setText("                                                                      Solicitudes Canceladas");
         jLabel1.setOpaque(true);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 716, Short.MAX_VALUE)
+            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 829, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 368, Short.MAX_VALUE))
+                .addGap(0, 533, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 

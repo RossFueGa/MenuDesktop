@@ -62,6 +62,9 @@ public class MenuItem extends javax.swing.JPanel {
             }
         });
 
+        jSeparator1.setBackground(java.awt.Color.white);
+        jSeparator1.setForeground(java.awt.Color.white);
+
         lbName.setFont(new java.awt.Font("Roboto Lt", 1, 15)); // NOI18N
         lbName.setForeground(new java.awt.Color(52, 45, 146));
         lbName.setText("Menu...");

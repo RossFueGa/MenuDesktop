@@ -1,7 +1,12 @@
 
 package form;
 import form.CambiaPanel;
-import Main.Main;
+import java.awt.Panel;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import Main.*;
+import javax.swing.JFrame;
+import form.*;
 /**
  *
  * @author ross
@@ -9,7 +14,7 @@ import Main.Main;
 public class PnlAddInventario extends javax.swing.JPanel {
 
     /**
-     * Creates new form Panel1
+     * Creación de nuevo panel
      */
     public PnlAddInventario() {
         initComponents();
@@ -74,12 +79,16 @@ public class PnlAddInventario extends javax.swing.JPanel {
             }
         });
 
+        jLabel5.setFont(new java.awt.Font("Roboto Lt", 1, 18)); // NOI18N
         jLabel5.setText("Amplificadores");
 
+        jLabel6.setFont(new java.awt.Font("Roboto Lt", 1, 18)); // NOI18N
         jLabel6.setText("Laptop");
 
+        jLabel7.setFont(new java.awt.Font("Roboto Lt", 1, 18)); // NOI18N
         jLabel7.setText("Proyectores");
 
+        jLabel8.setFont(new java.awt.Font("Roboto Lt", 1, 18)); // NOI18N
         jLabel8.setText("Bocina");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -97,7 +106,7 @@ public class PnlAddInventario extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(11, 11, 11)
                         .addComponent(jLabel5)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 214, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 209, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(labelLaptop, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -123,7 +132,7 @@ public class PnlAddInventario extends javax.swing.JPanel {
                         .addComponent(labelAmplificador, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(19, 19, 19)
                         .addComponent(jLabel5)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(labelProyectores, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -139,7 +148,8 @@ public class PnlAddInventario extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void labelAmplificadorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelAmplificadorMouseClicked
-        // TODO add your handling code here:
+        // TODO add your handling code h
+       
     }//GEN-LAST:event_labelAmplificadorMouseClicked
 
     private void labelBocinaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelBocinaMouseClicked
