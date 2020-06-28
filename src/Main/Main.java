@@ -192,9 +192,9 @@ public class Main extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPanel menus;
-    private javax.swing.JPanel panelBody;
-    private javax.swing.JPanel panelHeader;
-    private javax.swing.JPanel panelMenu;
+    public javax.swing.JPanel panelBody;
+    public javax.swing.JPanel panelHeader;
+    public javax.swing.JPanel panelMenu;
     // End of variables declaration//GEN-END:variables
 }
 

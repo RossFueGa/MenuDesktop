@@ -25,10 +25,10 @@ public class PnlSolicitudesActivas extends javax.swing.JPanel {
 
         jLabel1 = new javax.swing.JLabel();
 
-        jLabel1.setBackground(new java.awt.Color(155, 156, 237));
+        jLabel1.setBackground(new java.awt.Color(127, 145, 232));
         jLabel1.setFont(new java.awt.Font("Roboto Lt", 1, 18)); // NOI18N
         jLabel1.setForeground(java.awt.Color.white);
-        jLabel1.setText("                                                                      Solicitudes Activas");
+        jLabel1.setText("                                                       Solicitudes Activas");
         jLabel1.setOpaque(true);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);

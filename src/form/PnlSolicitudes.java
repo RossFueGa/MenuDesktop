@@ -52,10 +52,10 @@ public class PnlSolicitudes extends javax.swing.JPanel {
 
         setBackground(java.awt.Color.white);
 
-        jLabel1.setBackground(new java.awt.Color(155, 156, 237));
+        jLabel1.setBackground(new java.awt.Color(127, 145, 232));
         jLabel1.setFont(new java.awt.Font("Roboto Lt", 1, 18)); // NOI18N
         jLabel1.setForeground(java.awt.Color.white);
-        jLabel1.setText("                                                                     Solicitudes Préstamos");
+        jLabel1.setText("                                                      Solicitudes Préstamos");
         jLabel1.setOpaque(true);
 
         panelTExtoOpciones.setBackground(new java.awt.Color(254, 254, 254));
@@ -141,7 +141,7 @@ public class PnlSolicitudes extends javax.swing.JPanel {
         panelLista.setLayout(panelListaLayout);
         panelListaLayout.setHorizontalGroup(
             panelListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 849, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
         );
         panelListaLayout.setVerticalGroup(
             panelListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

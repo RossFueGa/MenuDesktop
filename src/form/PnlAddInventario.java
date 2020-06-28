@@ -2,22 +2,30 @@
 package form;
 import form.CambiaPanel;
 import java.awt.Panel;
+import form.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import Main.*;
+import java.awt.Window;
 import javax.swing.JFrame;
-import form.*;
+import javax.swing.SwingUtilities;
 /**
  *
  * @author ross
  */
 public class PnlAddInventario extends javax.swing.JPanel {
+    Main m;
 
     /**
      * Creación de nuevo panel
      */
     public PnlAddInventario() {
+        m =new Main();
         initComponents();
+    }
+
+    public PnlAddInventario(ActionListener actionListener) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     /**
@@ -29,7 +37,7 @@ public class PnlAddInventario extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        labelAmplificador = new javax.swing.JLabel();
+        clickAmplificador = new javax.swing.JLabel();
         labelLaptop = new javax.swing.JLabel();
         labelBocina = new javax.swing.JLabel();
         labelProyectores = new javax.swing.JLabel();
@@ -39,13 +47,14 @@ public class PnlAddInventario extends javax.swing.JPanel {
         jLabel8 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(246, 246, 246));
+        setName("panelBodyAddInventario"); // NOI18N
 
-        labelAmplificador.setBackground(new java.awt.Color(201, 116, 29));
-        labelAmplificador.setForeground(new java.awt.Color(206, 74, 74));
-        labelAmplificador.setIcon(new javax.swing.ImageIcon(getClass().getResource("/menu/speaker.png"))); // NOI18N
-        labelAmplificador.addMouseListener(new java.awt.event.MouseAdapter() {
+        clickAmplificador.setBackground(new java.awt.Color(201, 116, 29));
+        clickAmplificador.setForeground(new java.awt.Color(206, 74, 74));
+        clickAmplificador.setIcon(new javax.swing.ImageIcon(getClass().getResource("/menu/speaker.png"))); // NOI18N
+        clickAmplificador.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                labelAmplificadorMouseClicked(evt);
+                clickAmplificadorMouseClicked(evt);
             }
         });
 
@@ -102,7 +111,7 @@ public class PnlAddInventario extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(22, 22, 22)
                         .addComponent(jLabel7))
-                    .addComponent(labelAmplificador, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(clickAmplificador, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(11, 11, 11)
                         .addComponent(jLabel5)))
@@ -129,7 +138,7 @@ public class PnlAddInventario extends javax.swing.JPanel {
                         .addGap(27, 27, 27)
                         .addComponent(jLabel8))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(labelAmplificador, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(clickAmplificador, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(19, 19, 19)
                         .addComponent(jLabel5)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
@@ -147,32 +156,44 @@ public class PnlAddInventario extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void labelAmplificadorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelAmplificadorMouseClicked
-        // TODO add your handling code h
-       
-    }//GEN-LAST:event_labelAmplificadorMouseClicked
+    private void clickAmplificadorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_clickAmplificadorMouseClicked
+        // TODO add your 
+        //PnlAddAmplificador pnl = new PnlAddAmplificador();
+        //this.m.panelBody.add(pnl);
+        //m.show();
+        
+        new CambiaPanel(m.panelBody, new form.PnlAddAmplificador());
+        m.show(true);
+        
+    }//GEN-LAST:event_clickAmplificadorMouseClicked
 
     private void labelBocinaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelBocinaMouseClicked
         // TODO add your handling code here:
+        new CambiaPanel(m.panelBody, new form.PnlAddBocina());
+        m.show(true);
         
     }//GEN-LAST:event_labelBocinaMouseClicked
 
     private void labelProyectoresMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelProyectoresMouseClicked
         // TODO add your handling code here:
+        new CambiaPanel(m.panelBody, new form.PnlAddProyector());
+        m.show(true);
     }//GEN-LAST:event_labelProyectoresMouseClicked
 
     private void labelLaptopMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelLaptopMouseClicked
         // TODO add your handling code here:
+        new CambiaPanel(m.panelBody, new form.PnlAddLap());
+        m.show(true);
     }//GEN-LAST:event_labelLaptopMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public javax.swing.JLabel clickAmplificador;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel labelAmplificador;
-    private javax.swing.JLabel labelBocina;
+    public javax.swing.JLabel labelBocina;
     private javax.swing.JLabel labelLaptop;
     private javax.swing.JLabel labelProyectores;
     // End of variables declaration//GEN-END:variables
