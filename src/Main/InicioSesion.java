@@ -18,7 +18,6 @@ public class InicioSesion extends javax.swing.JFrame {
      */
     public InicioSesion() {
         initComponents();
-        setBackground(new Color(0,0,0,0));
     }
 
     /**
