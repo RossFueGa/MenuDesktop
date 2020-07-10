@@ -1,4 +1,3 @@
-
 package Main;
 
 import form.CambiaPanel;
@@ -29,7 +28,7 @@ public class Main extends javax.swing.JFrame {
     public Main() {
         initComponents();
         //this.setExtendedState(JFrame.MAXIMIZED_BOTH);
-        execute(); 
+        execute();
     }
 
     private void execute() {
@@ -45,14 +44,14 @@ public class Main extends javax.swing.JFrame {
                 new CambiaPanel(panelBody, new form.PnlSolicitudes());
             }
         });
-        
+
         MenuItem menuPrestamoDos = new MenuItem(iconSubMenu, "Prestamos Activos", new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
                 new CambiaPanel(panelBody, new form.PnlSolicitudesActivas());
             }
         });
-        
+
         MenuItem menuPrestamoTres = new MenuItem(iconSubMenu, "Préstamos Cancelados", new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -63,19 +62,26 @@ public class Main extends javax.swing.JFrame {
         MenuItem menuInventarioUno = new MenuItem(iconSubMenu, "Inventario existente", new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new CambiaPanel( panelBody,new form.PnlInventario());
+                new CambiaPanel(panelBody, new form.PnlInventario());
             }
         });
-        MenuItem menuInventarioDos = new MenuItem(iconSubMenu,"Agregar al inventario", new ActionListener() {
+        MenuItem menuInventarioDos = new MenuItem(iconSubMenu, "Agregar al inventario", new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 new CambiaPanel(panelBody, new form.PnlAddInventario());
             }
         });
-        
+
+        MenuItem menuconsultaUno = new MenuItem(iconSubMenu, "Consulta 1", new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new CambiaPanel(panelBody, new form.PnlAddAmplificador());
+            }
+        });
+
         MenuItem menuPrestamos = new MenuItem(iconPrestamos, "Préstamos", null, menuPrestamoUno, menuPrestamoDos, menuPrestamoTres);
         MenuItem menuInventario = new MenuItem(iconInventario, "Inventario", null, menuInventarioUno, menuInventarioDos);
-        MenuItem menuConsultas = new MenuItem(iconConsulta, "Consultas", null);
+        MenuItem menuConsultas = new MenuItem(iconConsulta, "Consultas", null, menuconsultaUno);
         addMenu(menuPrestamos, menuInventario, menuConsultas);
     }
 
@@ -89,6 +95,7 @@ public class Main extends javax.swing.JFrame {
         }
         menus.revalidate();
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -105,6 +112,7 @@ public class Main extends javax.swing.JFrame {
         panelBody = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
 
         panelHeader.setBackground(new java.awt.Color(38, 86, 186));
         panelHeader.setPreferredSize(new java.awt.Dimension(561, 50));
@@ -148,7 +156,7 @@ public class Main extends javax.swing.JFrame {
         panelBody.setLayout(new java.awt.BorderLayout());
         getContentPane().add(panelBody, java.awt.BorderLayout.CENTER);
 
-        setSize(new java.awt.Dimension(1100, 577));
+        setSize(new java.awt.Dimension(1084, 538));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -186,9 +194,8 @@ public class Main extends javax.swing.JFrame {
             }
         });
     }
-    
-    
-    
+
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPanel menus;
@@ -197,4 +204,3 @@ public class Main extends javax.swing.JFrame {
     public javax.swing.JPanel panelMenu;
     // End of variables declaration//GEN-END:variables
 }
-
