@@ -29,7 +29,7 @@ public class Main extends javax.swing.JFrame {
         initComponents();
         //this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         execute();
-    }
+           }
 
     private void execute() {
         ImageIcon iconPrestamos = new ImageIcon(getClass().getResource("/menu/prestamo.png"));
@@ -72,16 +72,11 @@ public class Main extends javax.swing.JFrame {
             }
         });
 
-        MenuItem menuconsultaUno = new MenuItem(iconSubMenu, "Consulta 1", new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                new CambiaPanel(panelBody, new form.PnlAddAmplificador());
-            }
-        });
+     
 
         MenuItem menuPrestamos = new MenuItem(iconPrestamos, "Préstamos", null, menuPrestamoUno, menuPrestamoDos, menuPrestamoTres);
         MenuItem menuInventario = new MenuItem(iconInventario, "Inventario", null, menuInventarioUno, menuInventarioDos);
-        MenuItem menuConsultas = new MenuItem(iconConsulta, "Consultas", null, menuconsultaUno);
+        MenuItem menuConsultas = new MenuItem(iconConsulta, "Consultas", null);
         addMenu(menuPrestamos, menuInventario, menuConsultas);
     }
 
@@ -106,6 +101,9 @@ public class Main extends javax.swing.JFrame {
     private void initComponents() {
 
         panelHeader = new javax.swing.JPanel();
+        cerrarSesion = new javax.swing.JLabel();
+        minim = new javax.swing.JLabel();
+        close = new javax.swing.JLabel();
         panelMenu = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         menus = new javax.swing.JPanel();
@@ -114,18 +112,52 @@ public class Main extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
 
-        panelHeader.setBackground(new java.awt.Color(38, 86, 186));
+        panelHeader.setBackground(new java.awt.Color(23, 77, 142));
         panelHeader.setPreferredSize(new java.awt.Dimension(561, 50));
+
+        cerrarSesion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/menu/DotsFinal.png"))); // NOI18N
+        cerrarSesion.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cerrarSesionMouseClicked(evt);
+            }
+        });
+
+        minim.setIcon(new javax.swing.ImageIcon(getClass().getResource("/menu/minimi.png"))); // NOI18N
+        minim.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                minimMouseClicked(evt);
+            }
+        });
+
+        close.setIcon(new javax.swing.ImageIcon(getClass().getResource("/menu/close.png"))); // NOI18N
+        close.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                closeMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout panelHeaderLayout = new javax.swing.GroupLayout(panelHeader);
         panelHeader.setLayout(panelHeaderLayout);
         panelHeaderLayout.setHorizontalGroup(
             panelHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1090, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelHeaderLayout.createSequentialGroup()
+                .addContainerGap(945, Short.MAX_VALUE)
+                .addComponent(minim, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26)
+                .addComponent(close, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(cerrarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(31, 31, 31))
         );
         panelHeaderLayout.setVerticalGroup(
             panelHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 50, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelHeaderLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(panelHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(minim, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)
+                    .addComponent(cerrarSesion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(close, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         getContentPane().add(panelHeader, java.awt.BorderLayout.PAGE_START);
@@ -147,7 +179,7 @@ public class Main extends javax.swing.JFrame {
         );
         panelMenuLayout.setVerticalGroup(
             panelMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 497, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 488, Short.MAX_VALUE)
         );
 
         getContentPane().add(panelMenu, java.awt.BorderLayout.LINE_START);
@@ -159,6 +191,23 @@ public class Main extends javax.swing.JFrame {
         setSize(new java.awt.Dimension(1084, 538));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void cerrarSesionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cerrarSesionMouseClicked
+        // TODO add your handling code here:
+       
+        
+    }//GEN-LAST:event_cerrarSesionMouseClicked
+
+    private void minimMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_minimMouseClicked
+        // TODO add your handling code here:
+        this.setExtendedState(ICONIFIED);
+
+    }//GEN-LAST:event_minimMouseClicked
+
+    private void closeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_closeMouseClicked
+        // TODO add your handling code here:
+        System.exit(0);
+    }//GEN-LAST:event_closeMouseClicked
 
     /**
      * @param args the command line arguments
@@ -197,8 +246,11 @@ public class Main extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel cerrarSesion;
+    private javax.swing.JLabel close;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPanel menus;
+    private javax.swing.JLabel minim;
     public javax.swing.JPanel panelBody;
     public javax.swing.JPanel panelHeader;
     public javax.swing.JPanel panelMenu;
