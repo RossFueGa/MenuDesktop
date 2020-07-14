@@ -78,7 +78,7 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Component id="jScrollPane1" alignment="1" pref="971" max="32767" attributes="0"/>
+              <Component id="jScrollPane1" alignment="1" pref="972" max="32767" attributes="0"/>
               <Component id="jPanel1" alignment="1" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
@@ -112,7 +112,7 @@
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="1" attributes="0">
-                          <Component id="jScrollPane2" pref="944" max="32767" attributes="0"/>
+                          <Component id="jScrollPane2" pref="945" max="32767" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -259,7 +259,7 @@
             </Component>
             <Component class="rsbuttom.RSButtonMetro" name="rSButtonMetro1">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Listar solicitudes"/>
+                <Property name="text" type="java.lang.String" value="Terminar pr&#xe9;stamo"/>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Quicksand-Regular.ttf" size="12" style="1"/>
                 </Property>
@@ -269,7 +269,7 @@
               </Events>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="560" y="40" width="130" height="-1"/>
+                  <AbsoluteConstraints x="560" y="70" width="160" height="-1"/>
                 </Constraint>
               </Constraints>
             </Component>
@@ -296,6 +296,22 @@
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                   <AbsoluteConstraints x="360" y="70" width="160" height="-1"/>
+                </Constraint>
+              </Constraints>
+            </Component>
+            <Component class="rsbuttom.RSButtonMetro" name="rSButtonMetro4">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Listar solicitudes"/>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Quicksand-Regular.ttf" size="12" style="1"/>
+                </Property>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rSButtonMetro4ActionPerformed"/>
+              </Events>
+              <Constraints>
+                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                  <AbsoluteConstraints x="560" y="20" width="160" height="-1"/>
                 </Constraint>
               </Constraints>
             </Component>
