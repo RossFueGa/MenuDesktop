@@ -1,7 +1,9 @@
 
 package menu;
 
+import Fonts.Fuentes;
 import java.awt.Dimension;
+import java.awt.FontFormatException;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import javax.swing.Icon;
@@ -11,6 +13,7 @@ import javax.swing.Icon;
  * @author ross
  */
 public class MenuItem extends javax.swing.JPanel {
+    Fuentes tipoDeFuentes;
 
     public void setShowing(boolean showing) {
         this.showing = showing;
@@ -26,10 +29,12 @@ public class MenuItem extends javax.swing.JPanel {
     private final ArrayList<MenuItem> subMenu = new ArrayList<>();
     private ActionListener act;
 
-    public MenuItem(Icon icon, String menuName, ActionListener act, MenuItem... subMenu) {
+    public MenuItem(Icon icon, String menuName, ActionListener act, MenuItem... subMenu) throws FontFormatException {
         initComponents();
+        tipoDeFuentes = new Fuentes();
+        txt_Titulo.setFont(tipoDeFuentes.fuente(tipoDeFuentes.quicSemiBold, 0, 15));
         lbIcon.setIcon(icon);
-        lbName.setText(menuName);
+        txt_Titulo.setText(menuName);
         if (act != null) {
             this.act = act;
         }
@@ -53,7 +58,7 @@ public class MenuItem extends javax.swing.JPanel {
 
         jSeparator1 = new javax.swing.JSeparator();
         lbIcon = new javax.swing.JLabel();
-        lbName = new javax.swing.JLabel();
+        txt_Titulo = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         addMouseListener(new java.awt.event.MouseAdapter() {
@@ -62,12 +67,11 @@ public class MenuItem extends javax.swing.JPanel {
             }
         });
 
-        jSeparator1.setBackground(java.awt.Color.white);
         jSeparator1.setForeground(java.awt.Color.white);
 
-        lbName.setFont(new java.awt.Font("Roboto Lt", 1, 15)); // NOI18N
-        lbName.setForeground(new java.awt.Color(52, 45, 146));
-        lbName.setText("Menu...");
+        txt_Titulo.setFont(new java.awt.Font("Roboto Lt", 1, 15)); // NOI18N
+        txt_Titulo.setForeground(new java.awt.Color(52, 45, 146));
+        txt_Titulo.setText("Menu...");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -78,7 +82,7 @@ public class MenuItem extends javax.swing.JPanel {
                 .addGap(30, 30, 30)
                 .addComponent(lbIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lbName, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
+                .addComponent(txt_Titulo, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -86,7 +90,7 @@ public class MenuItem extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lbName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txt_Titulo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(lbIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -149,6 +153,6 @@ public class MenuItem extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel lbIcon;
-    private javax.swing.JLabel lbName;
+    private javax.swing.JLabel txt_Titulo;
     // End of variables declaration//GEN-END:variables
 }

@@ -6,7 +6,10 @@
 package Main;
 
 import java.awt.Color;
+import java.awt.FontFormatException;
 import java.awt.Image;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 
 /**
@@ -117,7 +120,11 @@ public class InicioSesion extends javax.swing.JFrame {
     private void btn_aceptarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_aceptarMouseClicked
         // TODO add your handling code here:
         this.dispose();
-        new Main().setVisible(true);
+        try {
+            new Main().setVisible(true);
+        } catch (FontFormatException ex) {
+            Logger.getLogger(InicioSesion.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btn_aceptarMouseClicked
 
     private void txt_usuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_usuarioActionPerformed

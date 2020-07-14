@@ -1,17 +1,19 @@
 
 package form;
+import Fonts.Fuentes;
+import java.awt.FontFormatException;
 
-/**
- *
- * @author ross
- */
 public class PnlSolicitudes extends javax.swing.JPanel {
-
+ Fuentes tipoDeFuentes;
     /**
      * Creates new form Panel1
      */
-    public PnlSolicitudes() {
+    public PnlSolicitudes() throws FontFormatException {
+    
         initComponents();
+        tipoDeFuentes = new Fuentes();
+        jLabelSolicitudesPrestamos.setFont(tipoDeFuentes.fuente(tipoDeFuentes.quickBold, 0, 17));
+        tablaSolicitudes.setFont(tipoDeFuentes.fuente(tipoDeFuentes.quickMedium,0,15));
     }
 
     /**
@@ -24,21 +26,12 @@ public class PnlSolicitudes extends javax.swing.JPanel {
     private void initComponents() {
 
         jPanel2 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        panelTExtoOpciones = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
-        jSeparator1 = new javax.swing.JSeparator();
+        jLabelSolicitudesPrestamos = new javax.swing.JLabel();
         panelLista = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jLayeredPane1 = new javax.swing.JLayeredPane();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tablaSolicitudes = new javax.swing.JTable();
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -53,103 +46,52 @@ public class PnlSolicitudes extends javax.swing.JPanel {
 
         setBackground(java.awt.Color.white);
 
-        jLabel1.setBackground(new java.awt.Color(127, 145, 232));
-        jLabel1.setFont(new java.awt.Font("Roboto Lt", 1, 18)); // NOI18N
-        jLabel1.setForeground(java.awt.Color.white);
-        jLabel1.setText("                                                      Solicitudes Préstamos");
-        jLabel1.setOpaque(true);
-
-        panelTExtoOpciones.setBackground(new java.awt.Color(254, 254, 254));
-
-        jLabel2.setFont(new java.awt.Font("Roboto Lt", 1, 15)); // NOI18N
-        jLabel2.setText("Nombre");
-
-        jLabel3.setFont(new java.awt.Font("Roboto Lt", 1, 15)); // NOI18N
-        jLabel3.setText("Apellidos");
-
-        jLabel4.setFont(new java.awt.Font("Roboto Lt", 1, 15)); // NOI18N
-        jLabel4.setText("Matrícula");
-
-        jLabel5.setFont(new java.awt.Font("Roboto Lt", 1, 15)); // NOI18N
-        jLabel5.setText("Aula");
-
-        jLabel6.setFont(new java.awt.Font("Roboto Lt", 1, 15)); // NOI18N
-        jLabel6.setText("Edificio");
-
-        jLabel7.setFont(new java.awt.Font("Roboto Lt", 1, 15)); // NOI18N
-        jLabel7.setText("Profesor");
-
-        jLabel8.setFont(new java.awt.Font("Roboto Lt", 1, 15)); // NOI18N
-        jLabel8.setText("Horario");
-
-        jLabel9.setFont(new java.awt.Font("Roboto Lt", 1, 15)); // NOI18N
-        jLabel9.setText("Serial");
-
-        jLabel10.setFont(new java.awt.Font("Roboto Lt", 1, 15)); // NOI18N
-        jLabel10.setText("Grupo");
-
-        javax.swing.GroupLayout panelTExtoOpcionesLayout = new javax.swing.GroupLayout(panelTExtoOpciones);
-        panelTExtoOpciones.setLayout(panelTExtoOpcionesLayout);
-        panelTExtoOpcionesLayout.setHorizontalGroup(
-            panelTExtoOpcionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelTExtoOpcionesLayout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addComponent(jLabel2)
-                .addGap(38, 38, 38)
-                .addComponent(jLabel3)
-                .addGap(38, 38, 38)
-                .addComponent(jLabel4)
-                .addGap(38, 38, 38)
-                .addComponent(jLabel5)
-                .addGap(38, 38, 38)
-                .addComponent(jLabel6)
-                .addGap(38, 38, 38)
-                .addComponent(jLabel7)
-                .addGap(35, 35, 35)
-                .addComponent(jLabel8)
-                .addGap(33, 33, 33)
-                .addComponent(jLabel10)
-                .addGap(30, 30, 30)
-                .addComponent(jLabel9)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING)
-        );
-        panelTExtoOpcionesLayout.setVerticalGroup(
-            panelTExtoOpcionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelTExtoOpcionesLayout.createSequentialGroup()
-                .addGap(14, 14, 14)
-                .addGroup(panelTExtoOpcionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelTExtoOpcionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel10)
-                        .addComponent(jLabel9)
-                        .addComponent(jLabel8))
-                    .addGroup(panelTExtoOpcionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(panelTExtoOpcionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel7))
-                        .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING)))
-                .addGap(16, 16, 16)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.DEFAULT_SIZE, 1, Short.MAX_VALUE)
-                .addGap(0, 0, 0))
-        );
+        jLabelSolicitudesPrestamos.setBackground(new java.awt.Color(127, 145, 232));
+        jLabelSolicitudesPrestamos.setFont(new java.awt.Font("Roboto Lt", 1, 18)); // NOI18N
+        jLabelSolicitudesPrestamos.setForeground(java.awt.Color.white);
+        jLabelSolicitudesPrestamos.setText("                                                                     Solicitudes Préstamos");
+        jLabelSolicitudesPrestamos.setOpaque(true);
 
         panelLista.setBackground(java.awt.Color.white);
 
         jScrollPane1.setBackground(java.awt.Color.white);
         jScrollPane1.setBorder(null);
 
+        tablaSolicitudes.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "Estado", "Còdigo de Confirmación", "Código de Devolución ", "Nombre", "Apellidos", "Matrícula", "Aula", "Edificio", "Horario", "Grupo", "Serial"
+            }
+        ));
+        tablaSolicitudes.setRowHeight(25);
+        tablaSolicitudes.setRowSelectionAllowed(false);
+        tablaSolicitudes.setSelectionBackground(new java.awt.Color(204, 204, 255));
+        jScrollPane2.setViewportView(tablaSolicitudes);
+        if (tablaSolicitudes.getColumnModel().getColumnCount() > 0) {
+            tablaSolicitudes.getColumnModel().getColumn(1).setPreferredWidth(110);
+            tablaSolicitudes.getColumnModel().getColumn(2).setPreferredWidth(120);
+        }
+
+        jLayeredPane1.setLayer(jScrollPane2, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
         javax.swing.GroupLayout jLayeredPane1Layout = new javax.swing.GroupLayout(jLayeredPane1);
         jLayeredPane1.setLayout(jLayeredPane1Layout);
         jLayeredPane1Layout.setHorizontalGroup(
             jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 858, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jLayeredPane1Layout.createSequentialGroup()
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 944, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jLayeredPane1Layout.setVerticalGroup(
             jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 449, Short.MAX_VALUE)
+            .addGroup(jLayeredPane1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 437, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         jScrollPane1.setViewportView(jLayeredPane1);
@@ -158,49 +100,37 @@ public class PnlSolicitudes extends javax.swing.JPanel {
         panelLista.setLayout(panelListaLayout);
         panelListaLayout.setHorizontalGroup(
             panelListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 971, Short.MAX_VALUE)
         );
         panelListaLayout.setVerticalGroup(
             panelListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 456, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(panelTExtoOpciones, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jLabelSolicitudesPrestamos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(panelLista, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(panelTExtoOpciones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
+                .addComponent(jLabelSolicitudesPrestamos, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(panelLista, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
+    private javax.swing.JLabel jLabelSolicitudesPrestamos;
     private javax.swing.JLayeredPane jLayeredPane1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JPanel panelLista;
-    private javax.swing.JPanel panelTExtoOpciones;
+    private javax.swing.JTable tablaSolicitudes;
     // End of variables declaration//GEN-END:variables
 }

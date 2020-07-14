@@ -35,8 +35,7 @@ public class RSButtonMetro extends JButton implements MouseListener, MouseMotion
     private Color colorTextPressed = new Color(255, 255, 255);
     private Color colorTextHover = new Color(255, 255, 255);
     
-    private Font f = new Font("Tahoma", Font.BOLD, 14);
-
+    private Font f = new Font("Quicksand-Regular.ttf", Font.BOLD, 14);
     /**
      * Constructor de clase
      */

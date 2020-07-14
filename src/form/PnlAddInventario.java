@@ -6,7 +6,10 @@ import form.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import Main.*;
+import java.awt.FontFormatException;
 import java.awt.Window;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 /**
@@ -19,7 +22,7 @@ public class PnlAddInventario extends javax.swing.JPanel {
     /**
      * Creación de nuevo panel
      */
-    public PnlAddInventario() {
+    public PnlAddInventario() throws FontFormatException {
         m =new Main();
         initComponents();
     }
@@ -40,11 +43,11 @@ public class PnlAddInventario extends javax.swing.JPanel {
         clickAmplificador = new javax.swing.JLabel();
         labelLaptop = new javax.swing.JLabel();
         labelBocina = new javax.swing.JLabel();
-        labelProyectores = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
+        click_proyectores = new javax.swing.JLabel();
+        amplificador = new javax.swing.JLabel();
+        laptop = new javax.swing.JLabel();
+        proyectores = new javax.swing.JLabel();
+        bocina = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(246, 246, 246));
         setName("panelBodyAddInventario"); // NOI18N
@@ -78,27 +81,27 @@ public class PnlAddInventario extends javax.swing.JPanel {
             }
         });
 
-        labelProyectores.setBackground(new java.awt.Color(201, 116, 29));
-        labelProyectores.setForeground(new java.awt.Color(206, 74, 74));
-        labelProyectores.setIcon(new javax.swing.ImageIcon(getClass().getResource("/menu/projector.png"))); // NOI18N
-        labelProyectores.setText("jLabel1");
-        labelProyectores.addMouseListener(new java.awt.event.MouseAdapter() {
+        click_proyectores.setBackground(new java.awt.Color(201, 116, 29));
+        click_proyectores.setForeground(new java.awt.Color(206, 74, 74));
+        click_proyectores.setIcon(new javax.swing.ImageIcon(getClass().getResource("/menu/projector.png"))); // NOI18N
+        click_proyectores.setText("jLabel1");
+        click_proyectores.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                labelProyectoresMouseClicked(evt);
+                click_proyectoresMouseClicked(evt);
             }
         });
 
-        jLabel5.setFont(new java.awt.Font("Roboto Lt", 1, 18)); // NOI18N
-        jLabel5.setText("Amplificadores");
+        amplificador.setFont(new java.awt.Font("Roboto Lt", 1, 18)); // NOI18N
+        amplificador.setText("Amplificadores");
 
-        jLabel6.setFont(new java.awt.Font("Roboto Lt", 1, 18)); // NOI18N
-        jLabel6.setText("Laptop");
+        laptop.setFont(new java.awt.Font("Roboto Lt", 1, 18)); // NOI18N
+        laptop.setText("Laptop");
 
-        jLabel7.setFont(new java.awt.Font("Roboto Lt", 1, 18)); // NOI18N
-        jLabel7.setText("Proyectores");
+        proyectores.setFont(new java.awt.Font("Roboto Lt", 1, 18)); // NOI18N
+        proyectores.setText("Proyectores");
 
-        jLabel8.setFont(new java.awt.Font("Roboto Lt", 1, 18)); // NOI18N
-        jLabel8.setText("Bocina");
+        bocina.setFont(new java.awt.Font("Roboto Lt", 1, 18)); // NOI18N
+        bocina.setText("Bocina");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -107,24 +110,24 @@ public class PnlAddInventario extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(175, 175, 175)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(labelProyectores, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(click_proyectores, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(22, 22, 22)
-                        .addComponent(jLabel7))
+                        .addComponent(proyectores))
                     .addComponent(clickAmplificador, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(11, 11, 11)
-                        .addComponent(jLabel5)))
+                        .addComponent(amplificador)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 209, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(labelLaptop, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel6)
+                        .addComponent(laptop)
                         .addGap(46, 46, 46))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(layout.createSequentialGroup()
                             .addGap(40, 40, 40)
-                            .addComponent(jLabel8))
+                            .addComponent(bocina))
                         .addComponent(labelBocina, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(175, 175, 175))
         );
@@ -136,33 +139,37 @@ public class PnlAddInventario extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(labelBocina, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(27, 27, 27)
-                        .addComponent(jLabel8))
+                        .addComponent(bocina))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(clickAmplificador, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(19, 19, 19)
-                        .addComponent(jLabel5)))
+                        .addComponent(amplificador)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(labelProyectores, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(click_proyectores, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel7)
+                        .addComponent(proyectores)
                         .addGap(49, 49, 49))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(labelLaptop, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel6)
+                        .addComponent(laptop)
                         .addGap(41, 41, 41))))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void clickAmplificadorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_clickAmplificadorMouseClicked
-        // TODO add your 
-        //PnlAddAmplificador pnl = new PnlAddAmplificador();
-        //this.m.panelBody.add(pnl);
-        //m.show();
-        
-        new CambiaPanel(m.panelBody, new form.PnlAddAmplificador());
+        try {
+            // TODO add your
+            //PnlAddAmplificador pnl = new PnlAddAmplificador();
+            //this.m.panelBody.add(pnl);
+            //m.show();
+
+            new CambiaPanel(m.panelBody, new form.PnlAddAmplificador());
+        } catch (FontFormatException ex) {
+            Logger.getLogger(PnlAddInventario.class.getName()).log(Level.SEVERE, null, ex);
+        }
         m.show(true);
         
     }//GEN-LAST:event_clickAmplificadorMouseClicked
@@ -174,11 +181,11 @@ public class PnlAddInventario extends javax.swing.JPanel {
         
     }//GEN-LAST:event_labelBocinaMouseClicked
 
-    private void labelProyectoresMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelProyectoresMouseClicked
+    private void click_proyectoresMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_click_proyectoresMouseClicked
         // TODO add your handling code here:
         new CambiaPanel(m.panelBody, new form.PnlAddProyector());
         m.show(true);
-    }//GEN-LAST:event_labelProyectoresMouseClicked
+    }//GEN-LAST:event_click_proyectoresMouseClicked
 
     private void labelLaptopMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelLaptopMouseClicked
         // TODO add your handling code here:
@@ -188,13 +195,13 @@ public class PnlAddInventario extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel amplificador;
+    private javax.swing.JLabel bocina;
     public javax.swing.JLabel clickAmplificador;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel click_proyectores;
     public javax.swing.JLabel labelBocina;
     private javax.swing.JLabel labelLaptop;
-    private javax.swing.JLabel labelProyectores;
+    private javax.swing.JLabel laptop;
+    private javax.swing.JLabel proyectores;
     // End of variables declaration//GEN-END:variables
 }

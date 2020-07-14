@@ -2,8 +2,8 @@ package Main;
 
 import form.CambiaPanel;
 import form.PnlAddInventario;
-import form.PnlCancelados;
-import form.PnlInventario;
+import form.PnlSolicitudesCanceladas;
+import form.PnlTiposDeInventario;
 import form.PnlSolicitudes;
 import form.PnlSolicitudesActivas;
 import java.awt.Panel;
@@ -14,7 +14,11 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import menu.MenuItem;
+import form.PnlTiposDeInventario;
 import form.CambiaPanel;
+import java.awt.FontFormatException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -25,13 +29,13 @@ public class Main extends javax.swing.JFrame {
     /**
      * Creates new form Main
      */
-    public Main() {
+    public Main() throws FontFormatException {
         initComponents();
         //this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         execute();
            }
 
-    private void execute() {
+    private void execute() throws FontFormatException {
         ImageIcon iconPrestamos = new ImageIcon(getClass().getResource("/menu/prestamo.png"));
         ImageIcon iconInventario = new ImageIcon(getClass().getResource("/menu/inventario.png"));
         ImageIcon iconConsulta = new ImageIcon(getClass().getResource("/menu/database.png"));
@@ -41,40 +45,68 @@ public class Main extends javax.swing.JFrame {
         MenuItem menuPrestamoUno = new MenuItem(iconSubMenu, "Solicitudes de Préstamos", new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-                new CambiaPanel(panelBody, new form.PnlSolicitudes());
+                try {
+                    new CambiaPanel(panelBody, new form.PnlSolicitudes());
+                } catch (FontFormatException ex) {
+                    Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
 
         MenuItem menuPrestamoDos = new MenuItem(iconSubMenu, "Prestamos Activos", new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-                new CambiaPanel(panelBody, new form.PnlSolicitudesActivas());
+                try {
+                    new CambiaPanel(panelBody, new form.PnlSolicitudesActivas());
+                } catch (FontFormatException ex) {
+                    Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
-
-        MenuItem menuPrestamoTres = new MenuItem(iconSubMenu, "Préstamos Cancelados", new ActionListener() {
+        
+                MenuItem menuPrestamoTres = new MenuItem(iconSubMenu, "Préstamos Completados", new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new CambiaPanel(panelBody, new form.PnlCancelados());
+                try {
+                    new CambiaPanel(panelBody, new form.PnlSolicitudesCompletadas());
+                } catch (FontFormatException ex) {
+                    Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        });
+        
+        MenuItem menuPrestamoCuatro = new MenuItem(iconSubMenu, "Préstamos Cancelados", new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    new CambiaPanel(panelBody, new form.PnlSolicitudesCanceladas());
+                } catch (FontFormatException ex) {
+                    Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
         //Submenu  
         MenuItem menuInventarioUno = new MenuItem(iconSubMenu, "Inventario existente", new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new CambiaPanel(panelBody, new form.PnlInventario());
+                try {
+                    new CambiaPanel(panelBody, new form.PnlTiposDeInventario());
+                } catch (FontFormatException ex) {
+                    Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
         MenuItem menuInventarioDos = new MenuItem(iconSubMenu, "Agregar al inventario", new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new CambiaPanel(panelBody, new form.PnlAddInventario());
+                try {
+                    new CambiaPanel(panelBody, new form.PnlAddInventario());
+                } catch (FontFormatException ex) {
+                    Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
-
-     
-
-        MenuItem menuPrestamos = new MenuItem(iconPrestamos, "Préstamos", null, menuPrestamoUno, menuPrestamoDos, menuPrestamoTres);
+        MenuItem menuPrestamos = new MenuItem(iconPrestamos, "Préstamos", null, menuPrestamoUno, menuPrestamoDos, menuPrestamoTres,menuPrestamoCuatro);
         MenuItem menuInventario = new MenuItem(iconInventario, "Inventario", null, menuInventarioUno, menuInventarioDos);
         MenuItem menuConsultas = new MenuItem(iconConsulta, "Consultas", null);
         addMenu(menuPrestamos, menuInventario, menuConsultas);
@@ -141,13 +173,13 @@ public class Main extends javax.swing.JFrame {
         panelHeaderLayout.setHorizontalGroup(
             panelHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelHeaderLayout.createSequentialGroup()
-                .addContainerGap(945, Short.MAX_VALUE)
-                .addComponent(minim, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
+                .addContainerGap(962, Short.MAX_VALUE)
+                .addComponent(minim)
+                .addGap(21, 21, 21)
                 .addComponent(close, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(cerrarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(31, 31, 31))
+                .addGap(23, 23, 23))
         );
         panelHeaderLayout.setVerticalGroup(
             panelHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -194,7 +226,9 @@ public class Main extends javax.swing.JFrame {
 
     private void cerrarSesionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cerrarSesionMouseClicked
         // TODO add your handling code here:
-       
+       new InicioSesion().setVisible(true);
+       this.dispose();
+               
         
     }//GEN-LAST:event_cerrarSesionMouseClicked
 
@@ -239,7 +273,11 @@ public class Main extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Main().setVisible(true);
+                try {
+                    new Main().setVisible(true);
+                } catch (FontFormatException ex) {
+                    Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }

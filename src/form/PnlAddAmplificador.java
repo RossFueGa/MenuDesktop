@@ -1,5 +1,5 @@
-
 package form;
+
 import form.CambiaPanel;
 import Main.Main;
 import java.awt.Window;
@@ -7,11 +7,13 @@ import java.awt.event.ActionListener;
 import javax.swing.SwingUtilities;
 import Fonts.Fuentes;
 import java.awt.FontFormatException;
+
 /**
  *
  * @author ross
  */
 public class PnlAddAmplificador extends javax.swing.JPanel {
+
     Fuentes tipoDeFuente;
 
     /**
@@ -20,7 +22,12 @@ public class PnlAddAmplificador extends javax.swing.JPanel {
     public PnlAddAmplificador() throws FontFormatException {
         initComponents();
         tipoDeFuente = new Fuentes();
-        jLabelDetalle.setFont(tipoDeFuente.fuente(tipoDeFuente.quicSemiBold,0,16));
+        jLabelDetalle.setFont(tipoDeFuente.fuente(tipoDeFuente.quicSemiBold, 0, 19));
+        jLabelAgregarAmplificador.setFont(tipoDeFuente.fuente(tipoDeFuente.quicSemiBold, 0, 14));
+        jLabelNumSerie.setFont(tipoDeFuente.fuente(tipoDeFuente.quickBold, 0, 18));
+        jLabelTipo.setFont(tipoDeFuente.fuente(tipoDeFuente.quickBold, 0, 19));
+        comboBoxTipo.setFont(tipoDeFuente.fuente(tipoDeFuente.quickRegular, 0, 15));
+
     }
 
     PnlAddAmplificador(ActionListener actionListener) {
@@ -36,11 +43,11 @@ public class PnlAddAmplificador extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
+        jLabelAgregarAmplificador = new javax.swing.JLabel();
         jLabelDetalle = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
+        jLabelNumSerie = new javax.swing.JLabel();
+        jLabelTipo = new javax.swing.JLabel();
         btnCerrar = new rsbuttom.RSButtonMetro();
         rSButtonMetro2 = new rsbuttom.RSButtonMetro();
         txtFieldSerie = new javax.swing.JTextField();
@@ -48,20 +55,20 @@ public class PnlAddAmplificador extends javax.swing.JPanel {
 
         setBackground(new java.awt.Color(246, 246, 246));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/menu/add.png"))); // NOI18N
-        jLabel1.setText("Agregar Amplificador");
-        jLabel1.setIconTextGap(10);
+        jLabelAgregarAmplificador.setIcon(new javax.swing.ImageIcon(getClass().getResource("/menu/add.png"))); // NOI18N
+        jLabelAgregarAmplificador.setText("Agregar Amplificador");
+        jLabelAgregarAmplificador.setIconTextGap(10);
 
         jLabelDetalle.setFont(new java.awt.Font("Roboto Lt", 1, 15)); // NOI18N
         jLabelDetalle.setText("Detalles del Dispositivo");
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/menu/amplifier128.png"))); // NOI18N
 
-        jLabel4.setFont(new java.awt.Font("Roboto Lt", 1, 18)); // NOI18N
-        jLabel4.setText("Número de Serie");
+        jLabelNumSerie.setFont(new java.awt.Font("Roboto Lt", 1, 18)); // NOI18N
+        jLabelNumSerie.setText("Número de Serie");
 
-        jLabel6.setFont(new java.awt.Font("Roboto Lt", 1, 18)); // NOI18N
-        jLabel6.setText("Tipo");
+        jLabelTipo.setFont(new java.awt.Font("Roboto Lt", 1, 18)); // NOI18N
+        jLabelTipo.setText("Tipo");
 
         btnCerrar.setText("Cancelar");
         btnCerrar.setColorNormal(new java.awt.Color(116, 210, 129));
@@ -100,19 +107,19 @@ public class PnlAddAmplificador extends javax.swing.JPanel {
                                 .addGap(39, 39, 39)
                                 .addComponent(btnCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel6)
+                                .addComponent(jLabelNumSerie, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabelTipo)
                                 .addComponent(txtFieldSerie)
                                 .addComponent(comboBoxTipo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 12, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 817, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jLabelAgregarAmplificador, javax.swing.GroupLayout.PREFERRED_SIZE, 817, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabelAgregarAmplificador, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabelDetalle)
                 .addGap(91, 91, 91)
@@ -125,11 +132,11 @@ public class PnlAddAmplificador extends javax.swing.JPanel {
                             .addComponent(rSButtonMetro2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(89, 89, 89))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel4)
+                        .addComponent(jLabelNumSerie)
                         .addGap(18, 18, 18)
                         .addComponent(txtFieldSerie, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(28, 28, 28)
-                        .addComponent(jLabel6)
+                        .addGap(25, 25, 25)
+                        .addComponent(jLabelTipo)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(comboBoxTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
@@ -138,8 +145,8 @@ public class PnlAddAmplificador extends javax.swing.JPanel {
 
     private void btnCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarActionPerformed
         // TODO add your handling code here:
-    Window pnl = SwingUtilities.getWindowAncestor(PnlAddAmplificador.this);
-    pnl.setVisible(false);
+        Window pnl = SwingUtilities.getWindowAncestor(PnlAddAmplificador.this);
+        pnl.setVisible(false);
     }//GEN-LAST:event_btnCerrarActionPerformed
 
     private void rSButtonMetro2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rSButtonMetro2ActionPerformed
@@ -150,11 +157,11 @@ public class PnlAddAmplificador extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private rsbuttom.RSButtonMetro btnCerrar;
     private javax.swing.JComboBox<String> comboBoxTipo;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabelAgregarAmplificador;
     private javax.swing.JLabel jLabelDetalle;
+    private javax.swing.JLabel jLabelNumSerie;
+    private javax.swing.JLabel jLabelTipo;
     private rsbuttom.RSButtonMetro rSButtonMetro2;
     private javax.swing.JTextField txtFieldSerie;
     // End of variables declaration//GEN-END:variables

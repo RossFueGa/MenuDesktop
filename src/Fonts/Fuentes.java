@@ -17,6 +17,7 @@ public class Fuentes {
     public String quickMedium ="Quicksand-Medium.ttf";
     public String quickRegular ="Quicksand-Regular.ttf";
     public String quicSemiBold ="Quicksand-SemiBold.ttf";
+    public String quickBold = "Quicksand-Bold.ttf";
     
     public Font fuente (String fontName, int style, float size) throws FontFormatException{
         try{
