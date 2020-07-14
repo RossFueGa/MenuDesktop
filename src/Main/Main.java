@@ -33,7 +33,7 @@ public class Main extends javax.swing.JFrame {
         initComponents();
         //this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         execute();
-           }
+    }
 
     private void execute() throws FontFormatException {
         ImageIcon iconPrestamos = new ImageIcon(getClass().getResource("/menu/prestamo.png"));
@@ -63,8 +63,8 @@ public class Main extends javax.swing.JFrame {
                 }
             }
         });
-        
-                MenuItem menuPrestamoTres = new MenuItem(iconSubMenu, "Préstamos Completados", new ActionListener() {
+
+        MenuItem menuPrestamoTres = new MenuItem(iconSubMenu, "Préstamos Completados", new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
@@ -74,7 +74,7 @@ public class Main extends javax.swing.JFrame {
                 }
             }
         });
-        
+
         MenuItem menuPrestamoCuatro = new MenuItem(iconSubMenu, "Préstamos Cancelados", new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -96,6 +96,7 @@ public class Main extends javax.swing.JFrame {
                 }
             }
         });
+
         MenuItem menuInventarioDos = new MenuItem(iconSubMenu, "Agregar al inventario", new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -106,9 +107,54 @@ public class Main extends javax.swing.JFrame {
                 }
             }
         });
-        MenuItem menuPrestamos = new MenuItem(iconPrestamos, "Préstamos", null, menuPrestamoUno, menuPrestamoDos, menuPrestamoTres,menuPrestamoCuatro);
+
+        MenuItem menuConsultaPorCarrera = new MenuItem(iconSubMenu, "Consulta por Carrera", new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                try {
+                    new CambiaPanel(panelBody, new form.PnlConsultaUno());
+                } catch (FontFormatException ex) {
+                    Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        });
+
+        MenuItem menuConsultaPorHorario = new MenuItem(iconSubMenu, "Consulta por Horario", new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                try {
+                    new CambiaPanel(panelBody, new form.PnlConsultaDos());
+                } catch (FontFormatException ex) {
+                    Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        });
+
+        MenuItem menuConsultaPorDia = new MenuItem(iconSubMenu, "Consulta por dia", new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                try {
+                    new CambiaPanel(panelBody, new form.PnlConsultaTres());
+                } catch (FontFormatException ex) {
+                    Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        });
+
+        MenuItem menuConsultaPorEdificio = new MenuItem(iconSubMenu, "Consulta por Edificio", new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                try {
+                    new CambiaPanel(panelBody, new form.PnlConsultaCuatro());
+                } catch (FontFormatException ex) {
+                    Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        });
+
+        MenuItem menuPrestamos = new MenuItem(iconPrestamos, "Préstamos", null, menuPrestamoUno, menuPrestamoDos, menuPrestamoTres, menuPrestamoCuatro);
         MenuItem menuInventario = new MenuItem(iconInventario, "Inventario", null, menuInventarioUno, menuInventarioDos);
-        MenuItem menuConsultas = new MenuItem(iconConsulta, "Consultas", null);
+        MenuItem menuConsultas = new MenuItem(iconConsulta, "Consultas", null, menuConsultaPorCarrera, menuConsultaPorHorario, menuConsultaPorDia, menuConsultaPorEdificio);
         addMenu(menuPrestamos, menuInventario, menuConsultas);
     }
 
@@ -226,10 +272,10 @@ public class Main extends javax.swing.JFrame {
 
     private void cerrarSesionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cerrarSesionMouseClicked
         // TODO add your handling code here:
-       new InicioSesion().setVisible(true);
-       this.dispose();
-               
-        
+        new InicioSesion().setVisible(true);
+        this.dispose();
+
+
     }//GEN-LAST:event_cerrarSesionMouseClicked
 
     private void minimMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_minimMouseClicked
