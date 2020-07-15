@@ -6,6 +6,7 @@ import com.placeholder.PlaceHolder;
 import java.awt.FontFormatException;
 import java.util.List;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import logic.ClienteEquipos;
 import models.Equipo;
@@ -30,6 +31,10 @@ public class PnlTiposDeInventario extends javax.swing.JPanel {
         jLabelSolicitudesPrestamos.setFont(tipoDeFuentes.fuente(tipoDeFuentes.quickBold, 0, 17));
         api = new ClienteEquipos();
         getInventario();
+
+        lId.setVisible(false);
+        txtId.setVisible(false);
+        btnDelete.setVisible(false);
     }
 
     public void holders() {
@@ -50,18 +55,12 @@ public class PnlTiposDeInventario extends javax.swing.JPanel {
         pnlDatosIngresar = new javax.swing.JPanel();
         txtBuscarPorSerialEnLista = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jTextField3 = new javax.swing.JTextField();
-        btnEditar = new rsbuttom.RSButtonMetro();
+        lId = new javax.swing.JLabel();
+        txtId = new javax.swing.JTextField();
+        btnDelete = new rsbuttom.RSButtonMetro();
         btnListar = new rsbuttom.RSButtonMetro();
         btnEliminar = new rsbuttom.RSButtonMetro();
-        jComboBox2 = new javax.swing.JComboBox<>();
-        panelLista = new javax.swing.JPanel();
+        btnEditar1 = new rsbuttom.RSButtonMetro();
         jScrollPane1 = new javax.swing.JScrollPane();
         jLayeredPane1 = new javax.swing.JLayeredPane();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -93,53 +92,31 @@ public class PnlTiposDeInventario extends javax.swing.JPanel {
 
         txtBuscarPorSerialEnLista.setBackground(new java.awt.Color(226, 216, 216));
         txtBuscarPorSerialEnLista.setBorder(null);
-        pnlDatosIngresar.add(txtBuscarPorSerialEnLista, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 30, 200, 20));
+        pnlDatosIngresar.add(txtBuscarPorSerialEnLista, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 60, 200, 20));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/menu/barraBusqueda.png"))); // NOI18N
-        pnlDatosIngresar.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 20, -1, 41));
+        pnlDatosIngresar.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 50, -1, 41));
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
-        jLabel2.setText("ID");
-        pnlDatosIngresar.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, 50, -1));
+        lId.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        lId.setText("ID");
+        pnlDatosIngresar.add(lId, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 70, 50, -1));
+        pnlDatosIngresar.add(txtId, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 70, 92, -1));
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
-        jLabel3.setText("Tipo de equipo");
-        pnlDatosIngresar.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 100, -1, -1));
-
-        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
-        jLabel4.setText("Serial");
-        pnlDatosIngresar.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 60, 50, -1));
-
-        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
-        jLabel5.setText("Entrada");
-        pnlDatosIngresar.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 140, -1, -1));
-        pnlDatosIngresar.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(157, 20, 92, -1));
-
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        pnlDatosIngresar.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 140, 92, -1));
-
-        jTextField3.addActionListener(new java.awt.event.ActionListener() {
+        btnDelete.setText("Confirmar");
+        btnDelete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField3ActionPerformed(evt);
+                btnDeleteActionPerformed(evt);
             }
         });
-        pnlDatosIngresar.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(157, 65, 92, -1));
+        pnlDatosIngresar.add(btnDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 120, 90, 26));
 
-        btnEditar.setText("Editar");
-        btnEditar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEditarActionPerformed(evt);
-            }
-        });
-        pnlDatosIngresar.add(btnEditar, new org.netbeans.lib.awtextra.AbsoluteConstraints(322, 78, 109, 26));
-
-        btnListar.setText("Listar");
+        btnListar.setText("Actualizar lista");
         btnListar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnListarActionPerformed(evt);
             }
         });
-        pnlDatosIngresar.add(btnListar, new org.netbeans.lib.awtextra.AbsoluteConstraints(322, 26, 109, 26));
+        pnlDatosIngresar.add(btnListar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, 130, 26));
 
         btnEliminar.setText("Eliminar");
         btnEliminar.addActionListener(new java.awt.event.ActionListener() {
@@ -147,13 +124,15 @@ public class PnlTiposDeInventario extends javax.swing.JPanel {
                 btnEliminarActionPerformed(evt);
             }
         });
-        pnlDatosIngresar.add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 130, 109, 26));
+        pnlDatosIngresar.add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, 130, 26));
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        pnlDatosIngresar.add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(157, 96, 92, -1));
-
-        panelLista.setBackground(java.awt.Color.white);
-        panelLista.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        btnEditar1.setText("Editar");
+        btnEditar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditar1ActionPerformed(evt);
+            }
+        });
+        pnlDatosIngresar.add(btnEditar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 130, 26));
 
         jScrollPane1.setBackground(java.awt.Color.white);
         jScrollPane1.setBorder(null);
@@ -218,15 +197,15 @@ public class PnlTiposDeInventario extends javax.swing.JPanel {
             jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jLayeredPane1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 950, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(13, Short.MAX_VALUE))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 891, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(72, Short.MAX_VALUE))
         );
         jLayeredPane1Layout.setVerticalGroup(
             jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jLayeredPane1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 301, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(238, Short.MAX_VALUE))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(287, Short.MAX_VALUE))
         );
 
         jScrollPane1.setViewportView(jLayeredPane1);
@@ -236,12 +215,11 @@ public class PnlTiposDeInventario extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabelSolicitudesPrestamos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(panelLista, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-            .addComponent(pnlDatosIngresar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(pnlDatosIngresar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 976, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 913, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(25, 25, 25))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -250,17 +228,32 @@ public class PnlTiposDeInventario extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(pnlDatosIngresar, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(panelLista, javax.swing.GroupLayout.DEFAULT_SIZE, 325, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(22, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnEditarActionPerformed
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+        if (txtId.getText() != "") {
+            if (api.deleteOne(Equipo.class, Integer.parseInt(txtId.getText())) != null) {
+                JOptionPane.showMessageDialog(null, "Eliminado con éxito registro con Id:" + txtId.getText());
+                esconderData();
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Ingrese un id válido");
+        }
 
+
+    }//GEN-LAST:event_btnDeleteActionPerformed
+
+    private void esconderData(){
+        txtId.setText("");
+        lId.setVisible(false);
+        txtId.setVisible(false);
+        btnDelete.setVisible(false);
+        
+    }
+    
     private void btnListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListarActionPerformed
         cleanTable();
         getInventario();
@@ -268,12 +261,15 @@ public class PnlTiposDeInventario extends javax.swing.JPanel {
     }//GEN-LAST:event_btnListarActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-        // TODO add your handling code here:
+        lId.setVisible(true);
+        txtId.setVisible(true);
+        btnDelete.setVisible(true);
+
     }//GEN-LAST:event_btnEliminarActionPerformed
 
-    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
+    private void btnEditar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditar1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField3ActionPerformed
+    }//GEN-LAST:event_btnEditar1ActionPerformed
 
     private void getInventario() {
         List<Equipo> listaEquipos = api.getAll();
@@ -309,27 +305,36 @@ public class PnlTiposDeInventario extends javax.swing.JPanel {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private rsbuttom.RSButtonMetro btnEditar;
+    private rsbuttom.RSButtonMetro btnDelete;
+    private rsbuttom.RSButtonMetro btnEditar1;
     private rsbuttom.RSButtonMetro btnEliminar;
     private rsbuttom.RSButtonMetro btnListar;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabelSolicitudesPrestamos;
     private javax.swing.JLayeredPane jLayeredPane1;
+    private javax.swing.JLayeredPane jLayeredPane2;
+    private javax.swing.JLayeredPane jLayeredPane3;
+    private javax.swing.JLayeredPane jLayeredPane4;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JScrollPane jScrollPane6;
+    private javax.swing.JScrollPane jScrollPane7;
+    private javax.swing.JScrollPane jScrollPane8;
+    private javax.swing.JLabel lId;
     private javax.swing.JPanel panelLista;
+    private javax.swing.JPanel panelLista1;
+    private javax.swing.JPanel panelLista2;
     private javax.swing.JPanel pnlDatosIngresar;
     private javax.swing.JTable tablaSolicitudes;
+    private javax.swing.JTable tablaSolicitudes1;
+    private javax.swing.JTable tablaSolicitudes2;
+    private javax.swing.JTable tablaSolicitudes3;
     private javax.swing.JTextField txtBuscarPorSerialEnLista;
+    private javax.swing.JTextField txtId;
     // End of variables declaration//GEN-END:variables
 
 }

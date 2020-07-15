@@ -40,7 +40,7 @@ public class ClienteEquipos {
         return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(new GenericType<List<Equipo>>(){});
     }
 
-    public String deleteOne(Object requestEntity, String id) throws ClientErrorException {
+    public String deleteOne(Object requestEntity, int id) throws ClientErrorException {
         return webTarget.path(java.text.MessageFormat.format("{0}", new Object[]{id})).request().delete(String.class);
     }
 
