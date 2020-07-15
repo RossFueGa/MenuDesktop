@@ -1,19 +1,31 @@
-
 package form;
+
 import Fonts.Fuentes;
 import java.awt.FontFormatException;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
+import logic.ClienteApartado;
+import models.Apartado;
 
 public class PnlSolicitudes extends javax.swing.JPanel {
- Fuentes tipoDeFuentes;
+
+    Fuentes tipoDeFuentes;
+    private DefaultTableModel modelo;
+    private ClienteApartado api;
+
     /**
      * Creates new form Panel1
      */
     public PnlSolicitudes() throws FontFormatException {
-    
         initComponents();
+        api = new ClienteApartado();
+        modelo = new DefaultTableModel();
+        modelo.setColumnIdentifiers(new Object[]{"ID", "MATRÍCULA", "GRUPO", "HORARIO", "FECHA(a/m/d)", "ESTADO", "N CONFIRMACIÓN", "N DEVOLUCIÓN"});
         tipoDeFuentes = new Fuentes();
         jLabelSolicitudesPrestamos.setFont(tipoDeFuentes.fuente(tipoDeFuentes.quickBold, 0, 17));
-        tablaSolicitudes.setFont(tipoDeFuentes.fuente(tipoDeFuentes.quickMedium,0,15));
+        tablaSolicitudes.setFont(tipoDeFuentes.fuente(tipoDeFuentes.quickMedium, 0, 15));
+        tablaSolicitudes.setModel(modelo);
+        fetchAparts();
     }
 
     /**
@@ -33,12 +45,8 @@ public class PnlSolicitudes extends javax.swing.JPanel {
         jScrollPane2 = new javax.swing.JScrollPane();
         tablaSolicitudes = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        rSButtonMetro1 = new rsbuttom.RSButtonMetro();
-        rSButtonMetro2 = new rsbuttom.RSButtonMetro();
-        rSButtonMetro3 = new rsbuttom.RSButtonMetro();
-        rSButtonMetro4 = new rsbuttom.RSButtonMetro();
+        btnCancel = new rsbuttom.RSButtonMetro();
+        btnUpdate = new rsbuttom.RSButtonMetro();
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -105,41 +113,23 @@ public class PnlSolicitudes extends javax.swing.JPanel {
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setText("Codigo de Confirmación");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 40, 130, 30));
-
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        btnCancel.setText("Terminar préstamo");
+        btnCancel.setFont(new java.awt.Font("Quicksand-Regular.ttf", 1, 12)); // NOI18N
+        btnCancel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                btnCancelActionPerformed(evt);
             }
         });
-        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 40, 130, 30));
+        jPanel1.add(btnCancel, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 30, 160, -1));
 
-        rSButtonMetro1.setText("Terminar préstamo");
-        rSButtonMetro1.setFont(new java.awt.Font("Quicksand-Regular.ttf", 1, 12)); // NOI18N
-        rSButtonMetro1.addActionListener(new java.awt.event.ActionListener() {
+        btnUpdate.setText("Actualizar lista");
+        btnUpdate.setFont(new java.awt.Font("Quicksand-Regular.ttf", 1, 12)); // NOI18N
+        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rSButtonMetro1ActionPerformed(evt);
+                btnUpdateActionPerformed(evt);
             }
         });
-        jPanel1.add(rSButtonMetro1, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 70, 160, -1));
-
-        rSButtonMetro2.setText("Aceptar Solicitud");
-        rSButtonMetro2.setFont(new java.awt.Font("Quicksand-Regular.ttf", 1, 12)); // NOI18N
-        jPanel1.add(rSButtonMetro2, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 20, 160, -1));
-
-        rSButtonMetro3.setText("Eliminar Solicitud");
-        rSButtonMetro3.setFont(new java.awt.Font("Quicksand-Regular.ttf", 1, 12)); // NOI18N
-        jPanel1.add(rSButtonMetro3, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 70, 160, -1));
-
-        rSButtonMetro4.setText("Listar solicitudes");
-        rSButtonMetro4.setFont(new java.awt.Font("Quicksand-Regular.ttf", 1, 12)); // NOI18N
-        rSButtonMetro4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rSButtonMetro4ActionPerformed(evt);
-            }
-        });
-        jPanel1.add(rSButtonMetro4, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 20, 160, -1));
+        jPanel1.add(btnUpdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, 160, -1));
 
         javax.swing.GroupLayout panelListaLayout = new javax.swing.GroupLayout(panelLista);
         panelLista.setLayout(panelListaLayout);
@@ -173,33 +163,40 @@ public class PnlSolicitudes extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_btnCancelActionPerformed
 
-    private void rSButtonMetro1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rSButtonMetro1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_rSButtonMetro1ActionPerformed
+    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
+        resetTable();
+        fetchAparts();
+    }//GEN-LAST:event_btnUpdateActionPerformed
 
-    private void rSButtonMetro4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rSButtonMetro4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_rSButtonMetro4ActionPerformed
+    private void resetTable() {
+        modelo.setRowCount(0);
+    }
 
+    private void fetchAparts() {
+        List<Apartado> data = api.getAll();
+        for (Apartado d : data) {
+            if (d.getEstado().equals("PENDIENTE")) {
+                modelo.addRow(new Object[]{d.getIdApartado(), d.getMatricula(), d.getGrupo(),
+                    d.getHoraInicio() + " - " + d.getHoraFinal(), d.getFecha(), d.getEstado(),
+                    d.getCodigoConfirmacion(), d.getCodigoDevolucion()});
+            }
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
+    private rsbuttom.RSButtonMetro btnCancel;
+    private rsbuttom.RSButtonMetro btnUpdate;
     private javax.swing.JLabel jLabelSolicitudesPrestamos;
     private javax.swing.JLayeredPane jLayeredPane1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JPanel panelLista;
-    private rsbuttom.RSButtonMetro rSButtonMetro1;
-    private rsbuttom.RSButtonMetro rSButtonMetro2;
-    private rsbuttom.RSButtonMetro rSButtonMetro3;
-    private rsbuttom.RSButtonMetro rSButtonMetro4;
     private javax.swing.JTable tablaSolicitudes;
     // End of variables declaration//GEN-END:variables
 }

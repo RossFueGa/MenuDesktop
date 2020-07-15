@@ -1,20 +1,30 @@
-
 package form;
+
 import form.CambiaPanel;
 import Main.Main;
 import java.awt.Window;
+import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
+import logic.ClienteEquipos;
+import models.Equipo;
+
 /**
  *
  * @author ross
  */
 public class PnlAddBocina extends javax.swing.JPanel {
 
+    private Equipo equipo;
+    private ClienteEquipos api;
+
     /**
      * Creación de nuevo panel
      */
     public PnlAddBocina() {
         initComponents();
+        equipo = new Equipo();
+        api = new ClienteEquipos();
     }
 
     /**
@@ -30,11 +40,9 @@ public class PnlAddBocina extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
         btnCerrar = new rsbuttom.RSButtonMetro();
-        rSButtonMetro2 = new rsbuttom.RSButtonMetro();
+        btnAddBocina = new rsbuttom.RSButtonMetro();
         txtFieldSerie = new javax.swing.JTextField();
-        comboBoxTipo = new javax.swing.JComboBox<>();
 
         setBackground(new java.awt.Color(246, 246, 246));
 
@@ -50,9 +58,6 @@ public class PnlAddBocina extends javax.swing.JPanel {
         jLabel4.setFont(new java.awt.Font("Roboto Lt", 1, 18)); // NOI18N
         jLabel4.setText("Número de Serie");
 
-        jLabel6.setFont(new java.awt.Font("Roboto Lt", 1, 18)); // NOI18N
-        jLabel6.setText("Tipo");
-
         btnCerrar.setText("Cancelar");
         btnCerrar.setColorNormal(new java.awt.Color(116, 210, 129));
         btnCerrar.addActionListener(new java.awt.event.ActionListener() {
@@ -61,26 +66,17 @@ public class PnlAddBocina extends javax.swing.JPanel {
             }
         });
 
-        rSButtonMetro2.setText("Agregar");
-        rSButtonMetro2.setColorNormal(new java.awt.Color(116, 210, 129));
-        rSButtonMetro2.addActionListener(new java.awt.event.ActionListener() {
+        btnAddBocina.setText("Agregar");
+        btnAddBocina.setColorNormal(new java.awt.Color(116, 210, 129));
+        btnAddBocina.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rSButtonMetro2ActionPerformed(evt);
+                btnAddBocinaActionPerformed(evt);
             }
         });
 
         txtFieldSerie.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtFieldSerieActionPerformed(evt);
-            }
-        });
-
-        comboBoxTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        comboBoxTipo.setToolTipText("");
-        comboBoxTipo.setName(""); // NOI18N
-        comboBoxTipo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                comboBoxTipoActionPerformed(evt);
             }
         });
 
@@ -97,11 +93,9 @@ public class PnlAddBocina extends javax.swing.JPanel {
                         .addGap(163, 163, 163)
                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(36, 36, 36)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel4)
-                            .addComponent(jLabel6)
-                            .addComponent(txtFieldSerie)
-                            .addComponent(comboBoxTipo, 0, 184, Short.MAX_VALUE))))
+                            .addComponent(txtFieldSerie, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(291, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 12, Short.MAX_VALUE)
@@ -113,7 +107,7 @@ public class PnlAddBocina extends javax.swing.JPanel {
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                     .addContainerGap(338, Short.MAX_VALUE)
-                    .addComponent(rSButtonMetro2, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnAddBocina, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(305, 305, 305)))
         );
         layout.setVerticalGroup(
@@ -123,23 +117,20 @@ public class PnlAddBocina extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2)
                 .addGap(91, 91, 91)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel4)
                         .addGap(18, 18, 18)
                         .addComponent(txtFieldSerie, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel6)
-                        .addGap(16, 16, 16)
-                        .addComponent(comboBoxTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(41, 41, 41)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 69, Short.MAX_VALUE)
                 .addComponent(btnCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(87, 87, 87))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                     .addContainerGap(411, Short.MAX_VALUE)
-                    .addComponent(rSButtonMetro2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnAddBocina, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(87, 87, 87)))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -150,28 +141,45 @@ public class PnlAddBocina extends javax.swing.JPanel {
         pnl.setVisible(false);
     }//GEN-LAST:event_btnCerrarActionPerformed
 
-    private void rSButtonMetro2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rSButtonMetro2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_rSButtonMetro2ActionPerformed
-
-    private void comboBoxTipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxTipoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_comboBoxTipoActionPerformed
+    private void btnAddBocinaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddBocinaActionPerformed
+        if (!"".equals(txtFieldSerie.getText())) {
+            equipo.setIdTipoEquipo(4);
+            equipo.setIdEquipo(getLastId());
+            equipo.setSerial(txtFieldSerie.getText().toUpperCase());
+            if (api.insert(equipo) != null) {
+                JOptionPane.showMessageDialog(null, "Agregado con éxito");
+            } else {
+                JOptionPane.showMessageDialog(null, "Error al agregar");
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Debe incluir un serial");
+        }
+    }//GEN-LAST:event_btnAddBocinaActionPerformed
 
     private void txtFieldSerieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFieldSerieActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtFieldSerieActionPerformed
 
+    private int getLastId() {
+        int id = 0;
+        List<Equipo> all = api.getAll();
+        for (Equipo equipo1 : all) {
+            if (id < equipo1.getIdEquipo()) {
+                id = equipo1.getIdEquipo();
+            }
+        }
+        id++;
+        return id;
+
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private rsbuttom.RSButtonMetro btnAddBocina;
     private rsbuttom.RSButtonMetro btnCerrar;
-    private javax.swing.JComboBox<String> comboBoxTipo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel6;
-    private rsbuttom.RSButtonMetro rSButtonMetro2;
     private javax.swing.JTextField txtFieldSerie;
     // End of variables declaration//GEN-END:variables
 }

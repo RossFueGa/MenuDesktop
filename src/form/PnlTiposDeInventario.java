@@ -1,29 +1,41 @@
-
 package form;
+
 import Fonts.Fuentes;
 import com.placeholder.PlaceHolder;
+
 import java.awt.FontFormatException;
+import java.util.List;
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
+import logic.ClienteEquipos;
+import models.Equipo;
 
 public class PnlTiposDeInventario extends javax.swing.JPanel {
- Fuentes tipoDeFuentes;
+
+    Fuentes tipoDeFuentes;
+    private ClienteEquipos api;
+    private DefaultTableModel modelo;
     /**
      * Creates new form Panel1
      */
     PlaceHolder holder;
+
     public PnlTiposDeInventario() throws FontFormatException {
         initComponents();
+        modelo = new DefaultTableModel();
         tipoDeFuentes = new Fuentes();
+        modelo.setColumnIdentifiers(new Object[]{"ID", "TIPO EQUIPO", "SERIAL", "ESTADO"});
+        tablaSolicitudes.setModel(modelo);
+        tablaSolicitudes.setFont(tipoDeFuentes.fuente(tipoDeFuentes.quickMedium, 0, 15));
         jLabelSolicitudesPrestamos.setFont(tipoDeFuentes.fuente(tipoDeFuentes.quickBold, 0, 17));
-        tablaSolicitudes.setFont(tipoDeFuentes.fuente(tipoDeFuentes.quickMedium,0,15));
-    
-        
-        
+        api = new ClienteEquipos();
+        getInventario();
     }
-    
-    public void holders(){
-        
+
+    public void holders() {
+
     }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -45,9 +57,9 @@ public class PnlTiposDeInventario extends javax.swing.JPanel {
         jTextField2 = new javax.swing.JTextField();
         jComboBox1 = new javax.swing.JComboBox<>();
         jTextField3 = new javax.swing.JTextField();
-        rSButtonMetro1 = new rsbuttom.RSButtonMetro();
-        rSButtonMetro2 = new rsbuttom.RSButtonMetro();
-        rSButtonMetro3 = new rsbuttom.RSButtonMetro();
+        btnEditar = new rsbuttom.RSButtonMetro();
+        btnListar = new rsbuttom.RSButtonMetro();
+        btnEliminar = new rsbuttom.RSButtonMetro();
         jComboBox2 = new javax.swing.JComboBox<>();
         panelLista = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -113,29 +125,29 @@ public class PnlTiposDeInventario extends javax.swing.JPanel {
         });
         pnlDatosIngresar.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(157, 65, 92, -1));
 
-        rSButtonMetro1.setText("Editar");
-        rSButtonMetro1.addActionListener(new java.awt.event.ActionListener() {
+        btnEditar.setText("Editar");
+        btnEditar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rSButtonMetro1ActionPerformed(evt);
+                btnEditarActionPerformed(evt);
             }
         });
-        pnlDatosIngresar.add(rSButtonMetro1, new org.netbeans.lib.awtextra.AbsoluteConstraints(322, 78, 109, 26));
+        pnlDatosIngresar.add(btnEditar, new org.netbeans.lib.awtextra.AbsoluteConstraints(322, 78, 109, 26));
 
-        rSButtonMetro2.setText("Listar");
-        rSButtonMetro2.addActionListener(new java.awt.event.ActionListener() {
+        btnListar.setText("Listar");
+        btnListar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rSButtonMetro2ActionPerformed(evt);
+                btnListarActionPerformed(evt);
             }
         });
-        pnlDatosIngresar.add(rSButtonMetro2, new org.netbeans.lib.awtextra.AbsoluteConstraints(322, 26, 109, 26));
+        pnlDatosIngresar.add(btnListar, new org.netbeans.lib.awtextra.AbsoluteConstraints(322, 26, 109, 26));
 
-        rSButtonMetro3.setText("Eliminar");
-        rSButtonMetro3.addActionListener(new java.awt.event.ActionListener() {
+        btnEliminar.setText("Eliminar");
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rSButtonMetro3ActionPerformed(evt);
+                btnEliminarActionPerformed(evt);
             }
         });
-        pnlDatosIngresar.add(rSButtonMetro3, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 130, 109, 26));
+        pnlDatosIngresar.add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 130, 109, 26));
 
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         pnlDatosIngresar.add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(157, 96, 92, -1));
@@ -205,14 +217,16 @@ public class PnlTiposDeInventario extends javax.swing.JPanel {
         jLayeredPane1Layout.setHorizontalGroup(
             jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jLayeredPane1Layout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 950, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 19, Short.MAX_VALUE))
+                .addContainerGap(13, Short.MAX_VALUE))
         );
         jLayeredPane1Layout.setVerticalGroup(
             jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jLayeredPane1Layout.createSequentialGroup()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 479, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 66, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 301, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(238, Short.MAX_VALUE))
         );
 
         jScrollPane1.setViewportView(jLayeredPane1);
@@ -225,7 +239,8 @@ public class PnlTiposDeInventario extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(panelLista, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
             .addComponent(pnlDatosIngresar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
@@ -235,33 +250,68 @@ public class PnlTiposDeInventario extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(pnlDatosIngresar, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(panelLista, javax.swing.GroupLayout.PREFERRED_SIZE, 325, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 0, 0)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 384, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(31, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(panelLista, javax.swing.GroupLayout.DEFAULT_SIZE, 325, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void rSButtonMetro1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rSButtonMetro1ActionPerformed
+    private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_rSButtonMetro1ActionPerformed
+    }//GEN-LAST:event_btnEditarActionPerformed
 
-    private void rSButtonMetro2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rSButtonMetro2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_rSButtonMetro2ActionPerformed
+    private void btnListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListarActionPerformed
+        cleanTable();
+        getInventario();
 
-    private void rSButtonMetro3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rSButtonMetro3ActionPerformed
+    }//GEN-LAST:event_btnListarActionPerformed
+
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_rSButtonMetro3ActionPerformed
+    }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField3ActionPerformed
 
+    private void getInventario() {
+        List<Equipo> listaEquipos = api.getAll();
+        for (Equipo e : listaEquipos) {
+            modelo.addRow(new Object[]{e.getIdEquipo(), setTipoEquipo(e.getIdTipoEquipo()), e.getSerial(), e.getEstado().toUpperCase()});
+        }
+    }
+
+    private String setTipoEquipo(int tipo) {
+        String myTipo = "";
+        switch (tipo) {
+            case 1:
+                myTipo = "PROYECTOR HDMI";
+                break;
+            case 2:
+                myTipo = "PROYECTOR VGA";
+                break;
+            case 3:
+                myTipo = "LAPTOP";
+                break;
+            case 4:
+                myTipo = "BOCINA";
+                break;
+            case 5:
+                myTipo = "AMPLIFICADOR";
+                break;
+        }
+        return myTipo;
+    }
+
+    private void cleanTable() {
+        modelo.setRowCount(0);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private rsbuttom.RSButtonMetro btnEditar;
+    private rsbuttom.RSButtonMetro btnEliminar;
+    private rsbuttom.RSButtonMetro btnListar;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel1;
@@ -278,9 +328,6 @@ public class PnlTiposDeInventario extends javax.swing.JPanel {
     private javax.swing.JTextField jTextField3;
     private javax.swing.JPanel panelLista;
     private javax.swing.JPanel pnlDatosIngresar;
-    private rsbuttom.RSButtonMetro rSButtonMetro1;
-    private rsbuttom.RSButtonMetro rSButtonMetro2;
-    private rsbuttom.RSButtonMetro rSButtonMetro3;
     private javax.swing.JTable tablaSolicitudes;
     private javax.swing.JTextField txtBuscarPorSerialEnLista;
     // End of variables declaration//GEN-END:variables

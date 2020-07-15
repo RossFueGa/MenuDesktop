@@ -1,19 +1,42 @@
-
 package form;
+
 import Fonts.Fuentes;
 import java.awt.FontFormatException;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
+import logic.ClienteApartado;
+import models.Apartado;
 
 public class PnlSolicitudesActivas extends javax.swing.JPanel {
- Fuentes tipoDeFuentes;
+
+    Fuentes tipoDeFuentes;
+    private DefaultTableModel modelo;
+    private ClienteApartado api;
+
     /**
      * Creates new form Panel1
      */
-    public PnlSolicitudesActivas() throws FontFormatException {
-    
+    public PnlSolicitudesActivas() throws FontFormatException{
         initComponents();
+        modelo = new DefaultTableModel();
+        api = new ClienteApartado();
+        modelo.setColumnIdentifiers(new Object[]{"ID", "MATRÍCULA", "GRUPO", "HORARIO", "FECHA(a/m/d)", "ESTADO", "N CONFIRMACIÓN", "N DEVOLUCIÓN"});
         tipoDeFuentes = new Fuentes();
         jLabelSolicitudesPrestamos.setFont(tipoDeFuentes.fuente(tipoDeFuentes.quickBold, 0, 17));
-        tablaSolicitudes.setFont(tipoDeFuentes.fuente(tipoDeFuentes.quickMedium,0,15));
+        tablaSolicitudes.setFont(tipoDeFuentes.fuente(tipoDeFuentes.quickMedium, 0, 15));
+        tablaSolicitudes.setModel(modelo);
+        fetchAparts();
+    }
+    
+    private void fetchAparts() {
+        List<Apartado> data = api.getAll();
+        for (Apartado d : data) {
+            if (d.getEstado().equals("EN CURSO")) {
+                modelo.addRow(new Object[]{d.getIdApartado(), d.getMatricula(), d.getGrupo(),
+                    d.getHoraInicio() + " - " + d.getHoraFinal(), d.getFecha(), d.getEstado(),
+                    d.getCodigoConfirmacion(), d.getCodigoDevolucion()});
+            }
+        }
     }
 
     /**
