@@ -4,7 +4,7 @@ import Fonts.Fuentes;
 import java.awt.FontFormatException;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
-import logic.ClienteApartado;
+import api.ClienteApartado;
 import models.Apartado;
 
 public class PnlSolicitudesCompletadas extends javax.swing.JPanel {

@@ -3,21 +3,17 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package logic;
+package api;
 
-import java.util.List;
 import javax.ws.rs.ClientErrorException;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.WebTarget;
-import javax.ws.rs.core.GenericType;
-import models.Apartado;
 
 /**
- * Jersey REST client generated for REST resource:ApartadosResource
- * [apartados]<br>
+ * Jersey REST client generated for REST resource:EquiposResource [equipos]<br>
  * USAGE:
  * <pre>
- *        ClienteApartado client = new ClienteApartado();
+ *        NewJerseyClient client = new NewJerseyClient();
  *        Object response = client.XXX(...);
  *        // do whatever with response
  *        client.close();
@@ -25,20 +21,20 @@ import models.Apartado;
  *
  * @author alsorc
  */
-public class ClienteApartado {
+public class NewJerseyClient {
 
     private WebTarget webTarget;
     private Client client;
-    private static final String BASE_URI = "http://35.222.188.8:8080/ApiRestMyKepp-1.0/webresources/";
+    private static final String BASE_URI = "http://localhost:8080/ApiRestMiUV/webresources";
 
-    public ClienteApartado() {
+    public NewJerseyClient() {
         client = javax.ws.rs.client.ClientBuilder.newClient();
-        webTarget = client.target(BASE_URI).path("apartados");
+        webTarget = client.target(BASE_URI).path("equipos");
     }
 
-    public List<Apartado> getAll() throws ClientErrorException {
+    public <T> T getAll(Class<T> responseType) throws ClientErrorException {
         WebTarget resource = webTarget;
-        return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(new GenericType<List<Apartado>>(){});
+        return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(responseType);
     }
 
     public String deleteOne(Object requestEntity, String id) throws ClientErrorException {
@@ -55,8 +51,8 @@ public class ClienteApartado {
         return webTarget.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).put(javax.ws.rs.client.Entity.entity(requestEntity, javax.ws.rs.core.MediaType.APPLICATION_JSON), String.class);
     }
 
-    public <T> T insert(Object requestEntity, Class<T> responseType) throws ClientErrorException {
-        return webTarget.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).post(javax.ws.rs.client.Entity.entity(requestEntity, javax.ws.rs.core.MediaType.APPLICATION_JSON), responseType);
+    public String insert(Object requestEntity) throws ClientErrorException {
+        return webTarget.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).post(javax.ws.rs.client.Entity.entity(requestEntity, javax.ws.rs.core.MediaType.APPLICATION_JSON), String.class);
     }
 
     public void close() {

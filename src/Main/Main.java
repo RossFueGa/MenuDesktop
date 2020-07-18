@@ -108,7 +108,7 @@ public class Main extends javax.swing.JFrame {
             }
         });
 
-        MenuItem menuConsultaPorCarrera = new MenuItem(iconSubMenu, "Consulta por Carrera", new ActionListener() {
+        MenuItem menuConsultaPorCarrera = new MenuItem(iconSubMenu, "Reporte por carrera", new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
                 try {
@@ -119,7 +119,7 @@ public class Main extends javax.swing.JFrame {
             }
         });
 
-        MenuItem menuConsultaPorHorario = new MenuItem(iconSubMenu, "Consulta por Horario", new ActionListener() {
+        MenuItem menuConsultaPorHorario = new MenuItem(iconSubMenu, "Reporte por horario", new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
                 try {
@@ -130,7 +130,7 @@ public class Main extends javax.swing.JFrame {
             }
         });
 
-        MenuItem menuConsultaPorDia = new MenuItem(iconSubMenu, "Consulta por dia", new ActionListener() {
+        MenuItem menuConsultaPorDia = new MenuItem(iconSubMenu, "Reporte por día", new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
                 try {
@@ -141,7 +141,7 @@ public class Main extends javax.swing.JFrame {
             }
         });
 
-        MenuItem menuConsultaPorEdificio = new MenuItem(iconSubMenu, "Consulta por Edificio", new ActionListener() {
+        MenuItem menuConsultaPorEdificio = new MenuItem(iconSubMenu, "Reporte por edificio", new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
                 try {
@@ -154,7 +154,7 @@ public class Main extends javax.swing.JFrame {
 
         MenuItem menuPrestamos = new MenuItem(iconPrestamos, "Préstamos", null, menuPrestamoUno, menuPrestamoDos, menuPrestamoTres, menuPrestamoCuatro);
         MenuItem menuInventario = new MenuItem(iconInventario, "Inventario", null, menuInventarioUno, menuInventarioDos);
-        MenuItem menuConsultas = new MenuItem(iconConsulta, "Consultas", null, menuConsultaPorCarrera, menuConsultaPorHorario, menuConsultaPorDia, menuConsultaPorEdificio);
+        MenuItem menuConsultas = new MenuItem(iconConsulta, "Reportes", null, menuConsultaPorCarrera, menuConsultaPorHorario, menuConsultaPorDia, menuConsultaPorEdificio);
         addMenu(menuPrestamos, menuInventario, menuConsultas);
     }
 

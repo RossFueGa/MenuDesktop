@@ -9,7 +9,7 @@ import Fonts.Fuentes;
 import java.awt.FontFormatException;
 import java.util.List;
 import javax.swing.JOptionPane;
-import logic.ClienteEquipos;
+import api.ClienteEquipos;
 import models.Equipo;
 
 /**

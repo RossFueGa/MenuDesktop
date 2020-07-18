@@ -1,18 +1,57 @@
-
 package form;
+
 import Fonts.Fuentes;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.PageSize;
+import com.itextpdf.text.pdf.PdfPTable;
+import com.itextpdf.text.pdf.PdfWriter;
+import datadashboard.DaoApartados;
+import datadashboard.HeaderFooterPageEvent;
+import datadashboard.SendReport;
+import java.awt.BorderLayout;
 import java.awt.FontFormatException;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.mail.MessagingException;
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import models.ApartadoDetalle;
+
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.data.category.*;
 
 public class PnlConsultaUno extends javax.swing.JPanel {
- Fuentes tipoDeFuentes;
+
+    Fuentes tipoDeFuentes;
+    private DefaultTableModel modelo;
+    private DaoApartados data;
+    private List<ApartadoDetalle> records;
+    private JFileChooser fc;
+    private SendReport sr;
+
     /**
      * Creates new form Panel1
      */
     public PnlConsultaUno() throws FontFormatException {
-    
         initComponents();
+        txtRuta.setEditable(false);
+        data = new DaoApartados();
+        modelo = new DefaultTableModel();
+        modelo.setColumnIdentifiers(new Object[]{"ID", "EQUIPO", "ALUMNO", "MATRÍCULA", "CARRERA", "EDIFICIO", "AULA", "GRUPO", "FECHA(a/m/d)", "HORARIO"});
         tipoDeFuentes = new Fuentes();
         jLabelSolicitudesPrestamos.setFont(tipoDeFuentes.fuente(tipoDeFuentes.quickBold, 0, 17));
+        tHistorialCarrera.setModel(modelo);
+        fc = new JFileChooser("/home/alsorc/Documents/Reportes");
+        sr = new SendReport();
+        //loadData();
     }
 
     /**
@@ -28,7 +67,15 @@ public class PnlConsultaUno extends javax.swing.JPanel {
         jLabelSolicitudesPrestamos = new javax.swing.JLabel();
         panelLista = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jLayeredPane1 = new javax.swing.JLayeredPane();
+        tHistorialCarrera = new javax.swing.JTable();
+        panelBotones = new javax.swing.JPanel();
+        btnBuscar = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        cmbCarrera = new javax.swing.JComboBox<>();
+        btnDoPdf = new javax.swing.JButton();
+        btnBuscarArchivo = new javax.swing.JButton();
+        txtRuta = new javax.swing.JTextField();
+        btnEnviarMail = new javax.swing.JButton();
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -46,36 +93,105 @@ public class PnlConsultaUno extends javax.swing.JPanel {
         jLabelSolicitudesPrestamos.setBackground(new java.awt.Color(127, 145, 232));
         jLabelSolicitudesPrestamos.setFont(new java.awt.Font("Roboto Lt", 1, 18)); // NOI18N
         jLabelSolicitudesPrestamos.setForeground(java.awt.Color.white);
-        jLabelSolicitudesPrestamos.setText("                                                                     Consulta uno");
+        jLabelSolicitudesPrestamos.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabelSolicitudesPrestamos.setText("Historial de préstamos por carrera");
         jLabelSolicitudesPrestamos.setOpaque(true);
 
         panelLista.setBackground(java.awt.Color.white);
+        panelLista.setLayout(new java.awt.BorderLayout());
 
-        jScrollPane1.setBackground(java.awt.Color.white);
-        jScrollPane1.setBorder(null);
+        tHistorialCarrera.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(tHistorialCarrera);
 
-        javax.swing.GroupLayout jLayeredPane1Layout = new javax.swing.GroupLayout(jLayeredPane1);
-        jLayeredPane1.setLayout(jLayeredPane1Layout);
-        jLayeredPane1Layout.setHorizontalGroup(
-            jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 954, Short.MAX_VALUE)
+        panelLista.add(jScrollPane1, java.awt.BorderLayout.CENTER);
+
+        panelBotones.setBackground(java.awt.Color.white);
+
+        btnBuscar.setText("Buscar");
+        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setText("Carrera");
+
+        cmbCarrera.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Académicos", "Contaduría", "Administración", "Gestion de negocios", "Sistemas computacionales", "Informática", "Ingeniería de software" }));
+
+        btnDoPdf.setText("Generar PDF");
+        btnDoPdf.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDoPdfActionPerformed(evt);
+            }
+        });
+
+        btnBuscarArchivo.setText("Buscar");
+        btnBuscarArchivo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarArchivoActionPerformed(evt);
+            }
+        });
+
+        txtRuta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtRutaActionPerformed(evt);
+            }
+        });
+
+        btnEnviarMail.setText("Enviar");
+        btnEnviarMail.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEnviarMailActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout panelBotonesLayout = new javax.swing.GroupLayout(panelBotones);
+        panelBotones.setLayout(panelBotonesLayout);
+        panelBotonesLayout.setHorizontalGroup(
+            panelBotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelBotonesLayout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(cmbCarrera, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnBuscar)
+                .addGap(18, 18, 18)
+                .addComponent(btnDoPdf)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnBuscarArchivo)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtRuta, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnEnviarMail, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        jLayeredPane1Layout.setVerticalGroup(
-            jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 459, Short.MAX_VALUE)
-        );
 
-        jScrollPane1.setViewportView(jLayeredPane1);
+        panelBotonesLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnBuscar, btnBuscarArchivo, btnDoPdf});
 
-        javax.swing.GroupLayout panelListaLayout = new javax.swing.GroupLayout(panelLista);
-        panelLista.setLayout(panelListaLayout);
-        panelListaLayout.setHorizontalGroup(
-            panelListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 971, Short.MAX_VALUE)
-        );
-        panelListaLayout.setVerticalGroup(
-            panelListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 456, Short.MAX_VALUE)
+        panelBotonesLayout.setVerticalGroup(
+            panelBotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelBotonesLayout.createSequentialGroup()
+                .addContainerGap(16, Short.MAX_VALUE)
+                .addGroup(panelBotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(cmbCarrera, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1)
+                    .addComponent(btnBuscar)
+                    .addComponent(btnDoPdf)
+                    .addComponent(btnBuscarArchivo)
+                    .addComponent(txtRuta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnEnviarMail))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -84,22 +200,157 @@ public class PnlConsultaUno extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabelSolicitudesPrestamos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(panelLista, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(panelBotones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jLabelSolicitudesPrestamos, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(panelLista, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(panelBotones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(panelLista, javax.swing.GroupLayout.DEFAULT_SIZE, 273, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+        limpiarTabla();
+        showData(cmbCarrera.getSelectedIndex());
+    }//GEN-LAST:event_btnBuscarActionPerformed
+
+    private void btnDoPdfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDoPdfActionPerformed
+        try {
+            crearPdf();
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(PnlConsultaUno.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (DocumentException ex) {
+            Logger.getLogger(PnlConsultaUno.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnDoPdfActionPerformed
+
+    private void btnBuscarArchivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarArchivoActionPerformed
+        int seleccion = fc.showOpenDialog(jPanel2);
+        if (seleccion == JFileChooser.APPROVE_OPTION) {
+            //Seleccionamos el fichero
+            File fichero = fc.getSelectedFile();
+
+            //Ecribe la ruta del fichero seleccionado en el campo de texto
+            txtRuta.setText(fichero.getAbsolutePath());
+        }
+    }//GEN-LAST:event_btnBuscarArchivoActionPerformed
+
+    private void txtRutaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtRutaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtRutaActionPerformed
+
+    private void btnEnviarMailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEnviarMailActionPerformed
+        if(!"".equals(txtRuta.getText())){
+            try {
+                sr.sendPdf("bornsrss14@gmail.com", txtRuta.getText());
+                JOptionPane.showMessageDialog(null, "Correo enviado!");
+            } catch (MessagingException ex) {
+                Logger.getLogger(PnlConsultaUno.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }else{
+            JOptionPane.showMessageDialog(null, "Ruta no válida");
+        }
+    }//GEN-LAST:event_btnEnviarMailActionPerformed
+
+    private void showData(int carrera) {
+        records = data.getRecords(carrera);
+        System.out.println("Cargando");
+        if (!records.isEmpty()) {
+            for (ApartadoDetalle record : records) {
+                modelo.addRow(new Object[]{record.getIdApartado(), record.getNombreEquipo(), record.getNombre(),
+                    record.getMatricula(), record.getCarrera(), record.getEdificio(), record.getAula(),
+                    record.getGrupo(), record.getFecha(), record.getHoraInicio() + "-" + record.getHoraFinal()});
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "No existen registros");
+        }
+
+    }
+
+    private void crearPdf() throws FileNotFoundException, DocumentException {
+        if (!records.isEmpty()) {
+            
+            String ruta = "/home/alsorc/Documents/Reportes/reporte" + cmbCarrera.getSelectedItem() +".pdf";
+            Document documento = new Document(PageSize.A4.rotate(), 0, 0, 8, 8);
+            java.io.FileOutputStream ficheroPdf = new java.io.FileOutputStream(ruta);
+            PdfWriter writer = PdfWriter.getInstance(documento, ficheroPdf);
+            documento.open();
+            PdfPTable tabla = new PdfPTable(10);
+            tabla.setWidths(new int[]{1, 2, 1, 2, 2, 1, 1, 1, 2, 2});
+            HeaderFooterPageEvent event = new HeaderFooterPageEvent();
+            event.onStartPage(writer, documento);
+            writer.setPageEvent(event);
+
+            tabla.addCell("ID");
+            tabla.addCell("EQUIPO");
+            tabla.addCell("ALUMNO");
+            tabla.addCell("MATRÍCULA");
+            tabla.addCell("CARRERA");
+            tabla.addCell("EDIFICIO");
+            tabla.addCell("AULA");
+            tabla.addCell("GRUPO");
+            tabla.addCell("FECHA(a/m/d)");
+            tabla.addCell("HORARIO");
+            for (ApartadoDetalle record : records) {
+                tabla.addCell(String.valueOf(record.getIdApartado()));
+                tabla.addCell(record.getNombreEquipo());
+                tabla.addCell(record.getNombre());
+                tabla.addCell(record.getMatricula());
+                tabla.addCell(record.getCarrera());
+                tabla.addCell(record.getEdificio());
+                tabla.addCell(record.getAula());
+                tabla.addCell(record.getGrupo());
+                tabla.addCell(record.getFecha());
+                tabla.addCell(record.getHoraInicio() + "-" + record.getHoraFinal());
+            }
+            documento.add(tabla);
+            documento.close();
+            JOptionPane.showMessageDialog(null, "Reporte creado");
+        } else {
+            JOptionPane.showMessageDialog(null, "No existen registros para reporte");
+        }
+
+    }
+
+    private void loadData() {
+        System.out.println("Mostrando...");
+        DefaultCategoryDataset data = new DefaultCategoryDataset();
+
+        final String C1 = "Contaduría";
+        final String C2 = "Administración";
+
+        data.addValue(100, C1, "periodo a evaluar");
+        data.addValue(50, C2, "periodo a evaluar");
+
+        JFreeChart grafica = ChartFactory.createBarChart3D("DUMMY TITTLE", "Carreras", "Cantidad", data, PlotOrientation.VERTICAL, true, true, false);
+        ChartPanel contenedor = new ChartPanel(grafica);
+        panelLista.add(contenedor, BorderLayout.CENTER);
+        panelLista.validate();
+    }
+
+    private void limpiarTabla() {
+        modelo.setRowCount(0);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnBuscar;
+    private javax.swing.JButton btnBuscarArchivo;
+    private javax.swing.JButton btnDoPdf;
+    private javax.swing.JButton btnEnviarMail;
+    private javax.swing.JComboBox<String> cmbCarrera;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabelSolicitudesPrestamos;
-    private javax.swing.JLayeredPane jLayeredPane1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JPanel panelBotones;
     private javax.swing.JPanel panelLista;
+    private javax.swing.JTable tHistorialCarrera;
+    private javax.swing.JTextField txtRuta;
     // End of variables declaration//GEN-END:variables
 }

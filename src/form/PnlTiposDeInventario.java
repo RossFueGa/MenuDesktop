@@ -5,10 +5,9 @@ import com.placeholder.PlaceHolder;
 
 import java.awt.FontFormatException;
 import java.util.List;
-import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import logic.ClienteEquipos;
+import api.ClienteEquipos;
 import models.Equipo;
 
 public class PnlTiposDeInventario extends javax.swing.JPanel {
@@ -95,6 +94,11 @@ public class PnlTiposDeInventario extends javax.swing.JPanel {
         pnlDatosIngresar.add(txtBuscarPorSerialEnLista, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 60, 200, 20));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/menu/barraBusqueda.png"))); // NOI18N
+        jLabel1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jLabel1KeyTyped(evt);
+            }
+        });
         pnlDatosIngresar.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 50, -1, 41));
 
         lId.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
@@ -270,6 +274,10 @@ public class PnlTiposDeInventario extends javax.swing.JPanel {
     private void btnEditar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditar1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnEditar1ActionPerformed
+
+    private void jLabel1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jLabel1KeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jLabel1KeyTyped
 
     private void getInventario() {
         List<Equipo> listaEquipos = api.getAll();

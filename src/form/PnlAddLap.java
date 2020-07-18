@@ -6,7 +6,7 @@ import java.awt.Window;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
-import logic.ClienteEquipos;
+import api.ClienteEquipos;
 import models.Equipo;
 
 /**
