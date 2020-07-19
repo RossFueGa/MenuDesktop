@@ -24,7 +24,7 @@ import org.jfree.chart.JFreeChart;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.data.category.*;
 
-public class PnlConsultaUno extends javax.swing.JPanel {
+public class PnlConsultaCarreras extends javax.swing.JPanel {
 
     Fuentes tipoDeFuentes;
     private DefaultTableModel modelo;
@@ -34,7 +34,7 @@ public class PnlConsultaUno extends javax.swing.JPanel {
     /**
      * Creates new form Panel1
      */
-    public PnlConsultaUno() throws FontFormatException {
+    public PnlConsultaCarreras() throws FontFormatException {
         initComponents();
 
         data = new DaoApartados();
@@ -184,7 +184,7 @@ public class PnlConsultaUno extends javax.swing.JPanel {
             try {
                 crearPdf();
             } catch (FileNotFoundException | DocumentException ex) {
-                Logger.getLogger(PnlConsultaUno.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(PnlConsultaCarreras.class.getName()).log(Level.SEVERE, null, ex);
             }
         }else{
             JOptionPane.showMessageDialog(null, "No existen registros", "Aviso", JOptionPane.ERROR_MESSAGE);
@@ -211,7 +211,7 @@ public class PnlConsultaUno extends javax.swing.JPanel {
     private void crearPdf() throws FileNotFoundException, DocumentException {
         if (!records.isEmpty()) {
 
-            String ruta = "/home/alsorc/Documents/Reportes/reporte" + cmbCarrera.getSelectedItem() + ".pdf";
+            String ruta = "/home/alsorc/Documents/Reportes/reporte_carrera_" + cmbCarrera.getSelectedItem() + ".pdf";
             Document documento = new Document(PageSize.A4.rotate(), 0, 0, 8, 8);
             java.io.FileOutputStream ficheroPdf = new java.io.FileOutputStream(ruta);
             PdfWriter writer = PdfWriter.getInstance(documento, ficheroPdf);

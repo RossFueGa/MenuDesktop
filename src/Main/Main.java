@@ -103,7 +103,7 @@ public class Main extends javax.swing.JFrame {
             @Override
             public void actionPerformed(ActionEvent ae) {
                 try {
-                    new CambiaPanel(panelBody, new form.PnlConsultaUno());
+                    new CambiaPanel(panelBody, new form.PnlConsultaCarreras());//java.sql.Date selectedDate = (java.sql.Date) datePicker.getModel().getValue();
                 } catch (FontFormatException ex) {
                     Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -114,18 +114,18 @@ public class Main extends javax.swing.JFrame {
             @Override
             public void actionPerformed(ActionEvent ae) {
                 try {
-                    new CambiaPanel(panelBody, new form.PnlConsultaCuatro());
+                    new CambiaPanel(panelBody, new form.PnlConsultaFecha());
                 } catch (FontFormatException ex) {
                     Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         });
 
-        MenuItem menuConsultaPorDia = new MenuItem(iconSubMenu, "Reporte por día", new ActionListener() {
+        MenuItem menuConsultaPorDia = new MenuItem(iconSubMenu, "Reporte por fecha", new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
                 try {
-                    new CambiaPanel(panelBody, new form.PnlConsultaTres());
+                    new CambiaPanel(panelBody, new form.PnlConsultaFecha());
                 } catch (FontFormatException ex) {
                     Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
                 }
