@@ -193,7 +193,7 @@ public class Main extends javax.swing.JFrame {
         panelHeader.setBackground(new java.awt.Color(23, 77, 142));
         panelHeader.setPreferredSize(new java.awt.Dimension(561, 50));
 
-        cerrarSesion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/menu/DotsFinal.png"))); // NOI18N
+        cerrarSesion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/menu/logout.png"))); // NOI18N
         cerrarSesion.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 cerrarSesionMouseClicked(evt);
@@ -223,9 +223,9 @@ public class Main extends javax.swing.JFrame {
                 .addComponent(minim)
                 .addGap(21, 21, 21)
                 .addComponent(close, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addComponent(cerrarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(23, 23, 23))
+                .addGap(11, 11, 11))
         );
         panelHeaderLayout.setVerticalGroup(
             panelHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

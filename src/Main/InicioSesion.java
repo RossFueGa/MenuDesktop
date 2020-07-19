@@ -50,7 +50,6 @@ public class InicioSesion extends javax.swing.JFrame {
         setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel1.setMaximumSize(null);
         jPanel1.setMinimumSize(new java.awt.Dimension(366, 600));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -112,29 +111,6 @@ public class InicioSesion extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
-        // TODO add your handling code here:
-        System.exit(0);
-    }//GEN-LAST:event_jLabel1MouseClicked
-
-    private void btn_aceptarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_aceptarMouseClicked
-        // TODO add your handling code here:
-        this.dispose();
-        try {
-            new Main().setVisible(true);
-        } catch (FontFormatException ex) {
-            Logger.getLogger(InicioSesion.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_btn_aceptarMouseClicked
-
-    private void txt_usuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_usuarioActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txt_usuarioActionPerformed
-
-    private void psswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_psswordActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_psswordActionPerformed
-
     private void ojoshowMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ojoshowMousePressed
         // TODO add your handling code here:
         ojoHide.setVisible(true);
@@ -148,6 +124,29 @@ public class InicioSesion extends javax.swing.JFrame {
         ojoHide.setVisible(false);
         pssword.setEchoChar('*');
     }//GEN-LAST:event_ojoHideMousePressed
+
+    private void btn_aceptarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_aceptarMouseClicked
+        // TODO add your handling code here:
+        this.dispose();
+        try {
+            new Main().setVisible(true);
+        } catch (FontFormatException ex) {
+            Logger.getLogger(InicioSesion.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btn_aceptarMouseClicked
+
+    private void psswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_psswordActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_psswordActionPerformed
+
+    private void txt_usuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_usuarioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_usuarioActionPerformed
+
+    private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
+        // TODO add your handling code here:
+        System.exit(0);
+    }//GEN-LAST:event_jLabel1MouseClicked
 
     /**
      * @param args the command line arguments
