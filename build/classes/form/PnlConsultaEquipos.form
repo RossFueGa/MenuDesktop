@@ -65,7 +65,7 @@
           <Color blue="ff" green="ff" id="white" palette="1" red="ff" type="palette"/>
         </Property>
         <Property name="horizontalAlignment" type="int" value="0"/>
-        <Property name="text" type="java.lang.String" value="Reporte por edificio"/>
+        <Property name="text" type="java.lang.String" value="Reporte por equipo"/>
         <Property name="opaque" type="boolean" value="true"/>
       </Properties>
     </Component>

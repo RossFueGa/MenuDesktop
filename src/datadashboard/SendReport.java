@@ -8,8 +8,6 @@ package datadashboard;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Properties;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.activation.DataHandler;
 import javax.activation.DataSource;
 import javax.activation.FileDataSource;
@@ -43,8 +41,10 @@ public class SendReport {
 
     public void sendPdf(String destino, String ruta) throws AddressException, MessagingException {
         String host = "smtp.gmail.com";
-        final String user = "exkapp@gmail.com";//change accordingly
-        final String password = "tuyirlzhxcpwjkkp";//change accordingly
+        final String user = "mykeepapplication@gmail.com";//change accordingly        
+        //final String user = "exkapp@gmail.com";//change accordingly
+        final String password = "hkjrjnrrorgkuaoh";//change accordingly
+        //final String password = "tuyirlzhxcpwjkkp";//Contraseña única de exkapp; change accordingly
         //String to = "also.erc@gmail.com";//change accordingly
 
         //Get the session object

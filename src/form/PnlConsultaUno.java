@@ -8,16 +8,12 @@ import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 import datadashboard.DaoApartados;
 import datadashboard.HeaderFooterPageEvent;
-import datadashboard.SendReport;
 import java.awt.BorderLayout;
 import java.awt.FontFormatException;
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.mail.MessagingException;
-import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import models.ApartadoDetalle;
@@ -34,24 +30,19 @@ public class PnlConsultaUno extends javax.swing.JPanel {
     private DefaultTableModel modelo;
     private DaoApartados data;
     private List<ApartadoDetalle> records;
-    private JFileChooser fc;
-    private SendReport sr;
 
     /**
      * Creates new form Panel1
      */
     public PnlConsultaUno() throws FontFormatException {
         initComponents();
-        txtRuta.setEditable(false);
+
         data = new DaoApartados();
         modelo = new DefaultTableModel();
         modelo.setColumnIdentifiers(new Object[]{"ID", "EQUIPO", "ALUMNO", "MATRÍCULA", "CARRERA", "EDIFICIO", "AULA", "GRUPO", "FECHA(a/m/d)", "HORARIO"});
         tipoDeFuentes = new Fuentes();
         jLabelSolicitudesPrestamos.setFont(tipoDeFuentes.fuente(tipoDeFuentes.quickBold, 0, 17));
         tHistorialCarrera.setModel(modelo);
-        fc = new JFileChooser("/home/alsorc/Documents/Reportes");
-        sr = new SendReport();
-        //loadData();
     }
 
     /**
@@ -72,10 +63,7 @@ public class PnlConsultaUno extends javax.swing.JPanel {
         btnBuscar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         cmbCarrera = new javax.swing.JComboBox<>();
-        btnDoPdf = new javax.swing.JButton();
-        btnBuscarArchivo = new javax.swing.JButton();
-        txtRuta = new javax.swing.JTextField();
-        btnEnviarMail = new javax.swing.JButton();
+        btnGenerarPdf = new javax.swing.JButton();
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -128,30 +116,10 @@ public class PnlConsultaUno extends javax.swing.JPanel {
 
         cmbCarrera.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Académicos", "Contaduría", "Administración", "Gestion de negocios", "Sistemas computacionales", "Informática", "Ingeniería de software" }));
 
-        btnDoPdf.setText("Generar PDF");
-        btnDoPdf.addActionListener(new java.awt.event.ActionListener() {
+        btnGenerarPdf.setText("Generar PDF");
+        btnGenerarPdf.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDoPdfActionPerformed(evt);
-            }
-        });
-
-        btnBuscarArchivo.setText("Buscar");
-        btnBuscarArchivo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBuscarArchivoActionPerformed(evt);
-            }
-        });
-
-        txtRuta.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtRutaActionPerformed(evt);
-            }
-        });
-
-        btnEnviarMail.setText("Enviar");
-        btnEnviarMail.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEnviarMailActionPerformed(evt);
+                btnGenerarPdfActionPerformed(evt);
             }
         });
 
@@ -160,24 +128,18 @@ public class PnlConsultaUno extends javax.swing.JPanel {
         panelBotonesLayout.setHorizontalGroup(
             panelBotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelBotonesLayout.createSequentialGroup()
-                .addGap(21, 21, 21)
+                .addGap(50, 50, 50)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(46, 46, 46)
                 .addComponent(cmbCarrera, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(29, 29, 29)
                 .addComponent(btnBuscar)
-                .addGap(18, 18, 18)
-                .addComponent(btnDoPdf)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnBuscarArchivo)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtRuta, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnEnviarMail, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(35, 35, 35)
+                .addComponent(btnGenerarPdf, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(269, Short.MAX_VALUE))
         );
 
-        panelBotonesLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnBuscar, btnBuscarArchivo, btnDoPdf});
+        panelBotonesLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnBuscar, btnGenerarPdf});
 
         panelBotonesLayout.setVerticalGroup(
             panelBotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -187,10 +149,7 @@ public class PnlConsultaUno extends javax.swing.JPanel {
                     .addComponent(cmbCarrera, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1)
                     .addComponent(btnBuscar)
-                    .addComponent(btnDoPdf)
-                    .addComponent(btnBuscarArchivo)
-                    .addComponent(txtRuta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnEnviarMail))
+                    .addComponent(btnGenerarPdf))
                 .addContainerGap())
         );
 
@@ -220,63 +179,39 @@ public class PnlConsultaUno extends javax.swing.JPanel {
         showData(cmbCarrera.getSelectedIndex());
     }//GEN-LAST:event_btnBuscarActionPerformed
 
-    private void btnDoPdfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDoPdfActionPerformed
-        try {
-            crearPdf();
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(PnlConsultaUno.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (DocumentException ex) {
-            Logger.getLogger(PnlConsultaUno.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_btnDoPdfActionPerformed
-
-    private void btnBuscarArchivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarArchivoActionPerformed
-        int seleccion = fc.showOpenDialog(jPanel2);
-        if (seleccion == JFileChooser.APPROVE_OPTION) {
-            //Seleccionamos el fichero
-            File fichero = fc.getSelectedFile();
-
-            //Ecribe la ruta del fichero seleccionado en el campo de texto
-            txtRuta.setText(fichero.getAbsolutePath());
-        }
-    }//GEN-LAST:event_btnBuscarArchivoActionPerformed
-
-    private void txtRutaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtRutaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtRutaActionPerformed
-
-    private void btnEnviarMailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEnviarMailActionPerformed
-        if(!"".equals(txtRuta.getText())){
+    private void btnGenerarPdfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerarPdfActionPerformed
+        if (modelo.getRowCount() > 0) {
             try {
-                sr.sendPdf("bornsrss14@gmail.com", txtRuta.getText());
-                JOptionPane.showMessageDialog(null, "Correo enviado!");
-            } catch (MessagingException ex) {
+                crearPdf();
+            } catch (FileNotFoundException | DocumentException ex) {
                 Logger.getLogger(PnlConsultaUno.class.getName()).log(Level.SEVERE, null, ex);
             }
         }else{
-            JOptionPane.showMessageDialog(null, "Ruta no válida");
+            JOptionPane.showMessageDialog(null, "No existen registros", "Aviso", JOptionPane.ERROR_MESSAGE);
         }
-    }//GEN-LAST:event_btnEnviarMailActionPerformed
+    }//GEN-LAST:event_btnGenerarPdfActionPerformed
 
     private void showData(int carrera) {
         records = data.getRecords(carrera);
         System.out.println("Cargando");
+        JOptionPane.showMessageDialog(null, "Buscando...", "Aviso", JOptionPane.INFORMATION_MESSAGE);
         if (!records.isEmpty()) {
             for (ApartadoDetalle record : records) {
                 modelo.addRow(new Object[]{record.getIdApartado(), record.getNombreEquipo(), record.getNombre(),
                     record.getMatricula(), record.getCarrera(), record.getEdificio(), record.getAula(),
                     record.getGrupo(), record.getFecha(), record.getHoraInicio() + "-" + record.getHoraFinal()});
             }
+            JOptionPane.showMessageDialog(null, "Registros cargados con éxito", "Aviso", JOptionPane.INFORMATION_MESSAGE);
         } else {
-            JOptionPane.showMessageDialog(null, "No existen registros");
+            JOptionPane.showMessageDialog(null, "No existen registros", "Aviso", JOptionPane.ERROR_MESSAGE);
         }
 
     }
 
     private void crearPdf() throws FileNotFoundException, DocumentException {
         if (!records.isEmpty()) {
-            
-            String ruta = "/home/alsorc/Documents/Reportes/reporte" + cmbCarrera.getSelectedItem() +".pdf";
+
+            String ruta = "/home/alsorc/Documents/Reportes/reporte" + cmbCarrera.getSelectedItem() + ".pdf";
             Document documento = new Document(PageSize.A4.rotate(), 0, 0, 8, 8);
             java.io.FileOutputStream ficheroPdf = new java.io.FileOutputStream(ruta);
             PdfWriter writer = PdfWriter.getInstance(documento, ficheroPdf);
@@ -340,9 +275,7 @@ public class PnlConsultaUno extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscar;
-    private javax.swing.JButton btnBuscarArchivo;
-    private javax.swing.JButton btnDoPdf;
-    private javax.swing.JButton btnEnviarMail;
+    private javax.swing.JButton btnGenerarPdf;
     private javax.swing.JComboBox<String> cmbCarrera;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabelSolicitudesPrestamos;
@@ -351,6 +284,5 @@ public class PnlConsultaUno extends javax.swing.JPanel {
     private javax.swing.JPanel panelBotones;
     private javax.swing.JPanel panelLista;
     private javax.swing.JTable tHistorialCarrera;
-    private javax.swing.JTextField txtRuta;
     // End of variables declaration//GEN-END:variables
 }

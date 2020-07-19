@@ -10,9 +10,8 @@ import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.data.category.*;
-import org.jfree.data.general.DefaultPieDataset;
 
-public class PnlConsultaDos extends javax.swing.JPanel {
+public class PnlConsultaEquipos extends javax.swing.JPanel {
 
     private Fuentes tipoDeFuentes;
     private DaoApartados api;
@@ -20,7 +19,7 @@ public class PnlConsultaDos extends javax.swing.JPanel {
     /**
      * Creates new form Panel1
      */
-    public PnlConsultaDos() throws FontFormatException, SQLException {
+    public PnlConsultaEquipos() throws FontFormatException, SQLException {
         initComponents();
         api = new DaoApartados();
         tipoDeFuentes = new Fuentes();
@@ -58,7 +57,7 @@ public class PnlConsultaDos extends javax.swing.JPanel {
         jLabelSolicitudesPrestamos.setFont(new java.awt.Font("Roboto Lt", 1, 18)); // NOI18N
         jLabelSolicitudesPrestamos.setForeground(java.awt.Color.white);
         jLabelSolicitudesPrestamos.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabelSolicitudesPrestamos.setText("Reporte por edificio");
+        jLabelSolicitudesPrestamos.setText("Reporte por equipo");
         jLabelSolicitudesPrestamos.setOpaque(true);
 
         panelLista.setBackground(java.awt.Color.white);
@@ -83,23 +82,27 @@ public class PnlConsultaDos extends javax.swing.JPanel {
     private void loadData() throws SQLException {
         System.out.println("Mostrando...");
         DefaultCategoryDataset data = new DefaultCategoryDataset();
-        //DefaultPieDataset data2 = new DefaultPieDataset();
         
-        int recordsEdificio1 = api.getRecordsEdificio("1");
-        int recordsEdificio2 = api.getRecordsEdificio("2");
+        int recordsEdificio1 = api.getRecordsEquiposCount("1");
+        int recordsEdificio2 = api.getRecordsEquiposCount("2");
+        int recordsEdificio3 = api.getRecordsEquiposCount("3");
+        int recordsEdificio4 = api.getRecordsEquiposCount("4");
+        int recordsEdificio5 = api.getRecordsEquiposCount("5");
         
         
-        final String C1 = "Edificio 1";
-        final String C2 = "Edificio 2";
+        final String C1 = "PROYECTOR HDMI";
+        final String C2 = "PROYECTOR VGA";
+        final String C3 = "COMPUTADORA";
+        final String C4 = "BOCINA";
+        final String C5 = "AMPLIFICADOR";
 
-        data.addValue(recordsEdificio1, C1, "Préstamos de edificio 1");
-        data.addValue(recordsEdificio2, C2, "Préstamos de edificio 2");
-        
-//        data2.setValue(C1, recordsEdificio1);
-//        data2.setValue(C2, recordsEdificio2);
+        data.addValue(recordsEdificio1, C1,  C1);
+        data.addValue(recordsEdificio2, C2,  C2);
+        data.addValue(recordsEdificio3, C3,  C3);
+        data.addValue(recordsEdificio4, C4,  C4);
+        data.addValue(recordsEdificio5, C5,  C5);
 
-        JFreeChart grafica = ChartFactory.createBarChart3D("Historial de préstamos por edificio", "Edificios", "Préstamos", data, PlotOrientation.VERTICAL, true, true, false);
-        //JFreeChart grafica2 = ChartFactory.createPieChart("Historial de préstamos por edificio", data2, true, true, false);
+        JFreeChart grafica = ChartFactory.createBarChart3D("Historial de préstamos por equipo", "Edificios", "Préstamos", data, PlotOrientation.VERTICAL, true, true, false);
         ChartPanel contenedor = new ChartPanel(grafica);
         panelLista.add(contenedor, BorderLayout.CENTER);
         panelLista.validate();

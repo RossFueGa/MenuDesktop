@@ -25,13 +25,73 @@ public class DaoApartados implements IDao<ApartadoDetalle> {
         driverPostgres = ConnectionToDb.getInstance().getDriver();
     }
 
-    public String consulta1 = "Select id_apartado, tipos_equipos.nombre, usuarios.nombre, usuarios.matricula, carreras.nombre, lugares.edificio, lugares.aula, apartados.grupo, fecha, hora_inicio, hora_final FROM apartados \n"
+    private String consulta1 = "Select id_apartado, tipos_equipos.nombre, usuarios.nombre, usuarios.matricula, carreras.nombre, lugares.edificio, lugares.aula, apartados.grupo, fecha, hora_inicio, hora_final FROM apartados \n"
             + "INNER JOIN equipos ON apartados.id_equipo = equipos.id_equipo\n"
             + "INNER JOIN tipos_equipos ON equipos.id_tipos_equipo = tipos_equipos.id_tipos_equipo\n"
             + "INNER JOIN usuarios ON usuarios.matricula = apartados.matricula\n"
             + "INNER JOIN lugares ON lugares.id_lugar = apartados.id_lugar\n"
             + "INNER JOIN carreras ON carreras.id_carrera = usuarios.id_carrera\n"
             + "WHERE carreras.id_carrera = ?";
+
+    private String consulta2 = "Select id_apartado, tipos_equipos.nombre, usuarios.nombre, usuarios.matricula, carreras.nombre, lugares.edificio, lugares.aula, apartados.grupo, fecha, hora_inicio, hora_final FROM apartados \n"
+            + "INNER JOIN equipos ON apartados.id_equipo = equipos.id_equipo\n"
+            + "INNER JOIN tipos_equipos ON equipos.id_tipos_equipo = tipos_equipos.id_tipos_equipo\n"
+            + "INNER JOIN usuarios ON usuarios.matricula = apartados.matricula\n"
+            + "INNER JOIN lugares ON lugares.id_lugar = apartados.id_lugar\n"
+            + "INNER JOIN carreras ON carreras.id_carrera = usuarios.id_carrera\n"
+            + "WHERE lugares.edificio = ?";
+
+    private String consulta3 = "Select id_apartado, tipos_equipos.nombre, usuarios.nombre, usuarios.matricula, carreras.nombre, lugares.edificio, lugares.aula, apartados.grupo, fecha, hora_inicio, hora_final FROM apartados \n"
+            + "INNER JOIN equipos ON apartados.id_equipo = equipos.id_equipo\n"
+            + "INNER JOIN tipos_equipos ON equipos.id_tipos_equipo = tipos_equipos.id_tipos_equipo\n"
+            + "INNER JOIN usuarios ON usuarios.matricula = apartados.matricula\n"
+            + "INNER JOIN lugares ON lugares.id_lugar = apartados.id_lugar\n"
+            + "INNER JOIN carreras ON carreras.id_carrera = usuarios.id_carrera\n"
+            + "WHERE tipos_equipos.id_tipos_equipo = ?";
+
+    public int getRecordsEquiposCount(String equipo) throws SQLException {
+        ResultSet data;
+        int cantidad = 0;
+        try {
+            preQuery = driverPostgres.prepareStatement(consulta2);
+        } catch (SQLException ex) {
+            Logger.getLogger(DaoApartados.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        preQuery.setString(1, equipo);
+        data = preQuery.executeQuery();
+
+        try {
+            while (data.next()) {
+                cantidad++;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(DaoApartados.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return cantidad;
+    }
+    
+    
+    
+    public int getRecordsEdificio(String edificio) throws SQLException {
+        ResultSet data;
+        int cantidad = 0;
+        try {
+            preQuery = driverPostgres.prepareStatement(consulta2);
+        } catch (SQLException ex) {
+            Logger.getLogger(DaoApartados.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        preQuery.setString(1, edificio);
+        data = preQuery.executeQuery();
+
+        try {
+            while (data.next()) {
+                cantidad++;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(DaoApartados.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return cantidad;
+    }
 
     @Override
     public List<ApartadoDetalle> getRecords(int carrera) {
