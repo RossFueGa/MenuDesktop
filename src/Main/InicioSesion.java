@@ -103,7 +103,9 @@ public class InicioSesion extends javax.swing.JFrame {
         });
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 20, 40, 20));
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/menu/sesionI.jpg"))); // NOI18N
+        jLabel3.setBackground(java.awt.Color.white);
+        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/menu/iconInicioSesionFull.png"))); // NOI18N
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 600));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 366, 600));

@@ -1,20 +1,30 @@
-
 package form;
+
 import form.CambiaPanel;
 import Main.Main;
 import java.awt.Window;
+import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
+import api.ClienteEquipos;
+import models.Equipo;
+
 /**
  *
  * @author ross
  */
 public class PnlAddLap extends javax.swing.JPanel {
 
+    private Equipo equipo;
+    private ClienteEquipos api;
+
     /**
      * Creación de nuevo panel
      */
     public PnlAddLap() {
         initComponents();
+        equipo = new Equipo();
+        api = new ClienteEquipos();
     }
 
     /**
@@ -30,11 +40,9 @@ public class PnlAddLap extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
         btnCancelar = new rsbuttom.RSButtonMetro();
         rSButtonMetro2 = new rsbuttom.RSButtonMetro();
         txtFieldSerie = new javax.swing.JTextField();
-        jComboBox1 = new javax.swing.JComboBox<>();
 
         setBackground(new java.awt.Color(246, 246, 246));
 
@@ -49,9 +57,6 @@ public class PnlAddLap extends javax.swing.JPanel {
 
         jLabel4.setFont(new java.awt.Font("Roboto Lt", 1, 18)); // NOI18N
         jLabel4.setText("Número de Serie");
-
-        jLabel6.setFont(new java.awt.Font("Roboto Lt", 1, 18)); // NOI18N
-        jLabel6.setText("Tipo");
 
         btnCancelar.setText("Cancelar");
         btnCancelar.setColorNormal(new java.awt.Color(116, 210, 129));
@@ -69,8 +74,6 @@ public class PnlAddLap extends javax.swing.JPanel {
             }
         });
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -87,19 +90,13 @@ public class PnlAddLap extends javax.swing.JPanel {
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(36, 36, 36)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel6)
-                            .addComponent(rSButtonMetro2, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(txtFieldSerie, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(52, 52, 52))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                    .addComponent(rSButtonMetro2, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(txtFieldSerie, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(52, 52, 52))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -113,11 +110,7 @@ public class PnlAddLap extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel4)
                         .addGap(18, 18, 18)
-                        .addComponent(txtFieldSerie, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(29, 29, 29)
-                        .addComponent(jLabel6)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(txtFieldSerie, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 57, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -133,18 +126,39 @@ public class PnlAddLap extends javax.swing.JPanel {
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void rSButtonMetro2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rSButtonMetro2ActionPerformed
-        // TODO add your handling code here:
+        if (!"".equals(txtFieldSerie.getText())) {
+            equipo.setIdTipoEquipo(3);
+            equipo.setIdEquipo(getLastId());
+            equipo.setSerial(txtFieldSerie.getText().toUpperCase());
+            if (api.insert(equipo) != null) {
+                JOptionPane.showMessageDialog(null, "Agregado con éxito");
+            } else {
+                JOptionPane.showMessageDialog(null, "Error al agregar");
+            }
+        }else{
+            JOptionPane.showMessageDialog(null, "Debe incluir un serial");
+        }
     }//GEN-LAST:event_rSButtonMetro2ActionPerformed
 
+    private int getLastId() {
+        int id = 0;
+        List<Equipo> all = api.getAll();
+        for (Equipo equipo1 : all) {
+            if (id < equipo1.getIdEquipo()) {
+                id = equipo1.getIdEquipo();
+            }
+        }
+        id++;
+        return id;
+
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private rsbuttom.RSButtonMetro btnCancelar;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel6;
     private rsbuttom.RSButtonMetro rSButtonMetro2;
     private javax.swing.JTextField txtFieldSerie;
     // End of variables declaration//GEN-END:variables

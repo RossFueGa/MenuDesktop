@@ -1,22 +1,13 @@
 package Main;
 
-import form.CambiaPanel;
-import form.PnlAddInventario;
-import form.PnlSolicitudesCanceladas;
-import form.PnlTiposDeInventario;
-import form.PnlSolicitudes;
-import form.PnlSolicitudesActivas;
-import java.awt.Panel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
-import javax.swing.JFrame;
-import javax.swing.JOptionPane;
 import menu.MenuItem;
-import form.PnlTiposDeInventario;
 import form.CambiaPanel;
 import java.awt.FontFormatException;
+import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -108,53 +99,80 @@ public class Main extends javax.swing.JFrame {
             }
         });
 
-        MenuItem menuConsultaPorCarrera = new MenuItem(iconSubMenu, "Consulta por Carrera", new ActionListener() {
+        MenuItem menuConsultaPorCarrera = new MenuItem(iconSubMenu, "Reporte por carrera", new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
                 try {
-                    new CambiaPanel(panelBody, new form.PnlConsultaUno());
+                    new CambiaPanel(panelBody, new form.PnlConsultaCarreras());//java.sql.Date selectedDate = (java.sql.Date) datePicker.getModel().getValue();
                 } catch (FontFormatException ex) {
                     Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         });
 
-        MenuItem menuConsultaPorHorario = new MenuItem(iconSubMenu, "Consulta por Horario", new ActionListener() {
+        MenuItem menuConsultaPorHorario = new MenuItem(iconSubMenu, "Reporte por horario", new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                try {
+                    new CambiaPanel(panelBody, new form.PnlConsultaFecha());
+                } catch (FontFormatException ex) {
+                    Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        });
+
+        MenuItem menuConsultaPorDia = new MenuItem(iconSubMenu, "Reporte por fecha", new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                try {
+                    new CambiaPanel(panelBody, new form.PnlConsultaFecha());
+                } catch (FontFormatException ex) {
+                    Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        });
+        
+         MenuItem menuConsultaPorTipoEquipo = new MenuItem(iconSubMenu, "Gráfica por equipos", new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                try {
+                    new CambiaPanel(panelBody, new form.PnlConsultaEquipos());
+                } catch (FontFormatException ex) {
+                    Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (SQLException ex) {
+                    Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        });
+
+        MenuItem menuConsultaPorEdificio = new MenuItem(iconSubMenu, "Gráfico por edificios", new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
                 try {
                     new CambiaPanel(panelBody, new form.PnlConsultaDos());
                 } catch (FontFormatException ex) {
                     Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (SQLException ex) {
+                    Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         });
-
-        MenuItem menuConsultaPorDia = new MenuItem(iconSubMenu, "Consulta por dia", new ActionListener() {
+        
+        MenuItem menuEnviarReporte = new MenuItem(iconSubMenu, "Enviar reporte", new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
                 try {
-                    new CambiaPanel(panelBody, new form.PnlConsultaTres());
+                    new CambiaPanel(panelBody, new form.PnlEnviarReporte());
                 } catch (FontFormatException ex) {
                     Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         });
-
-        MenuItem menuConsultaPorEdificio = new MenuItem(iconSubMenu, "Consulta por Edificio", new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent ae) {
-                try {
-                    new CambiaPanel(panelBody, new form.PnlConsultaCuatro());
-                } catch (FontFormatException ex) {
-                    Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-        });
+        
 
         MenuItem menuPrestamos = new MenuItem(iconPrestamos, "Préstamos", null, menuPrestamoUno, menuPrestamoDos, menuPrestamoTres, menuPrestamoCuatro);
         MenuItem menuInventario = new MenuItem(iconInventario, "Inventario", null, menuInventarioUno, menuInventarioDos);
-        MenuItem menuConsultas = new MenuItem(iconConsulta, "Consultas", null, menuConsultaPorCarrera, menuConsultaPorHorario, menuConsultaPorDia, menuConsultaPorEdificio);
+        MenuItem menuConsultas = new MenuItem(iconConsulta, "Reportes", null, menuConsultaPorCarrera, menuConsultaPorHorario, menuConsultaPorDia, menuEnviarReporte, menuConsultaPorEdificio, menuConsultaPorTipoEquipo);
         addMenu(menuPrestamos, menuInventario, menuConsultas);
     }
 

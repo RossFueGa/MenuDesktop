@@ -1,20 +1,30 @@
-
 package form;
+
 import form.CambiaPanel;
 import Main.Main;
 import java.awt.Window;
+import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
+import api.ClienteEquipos;
+import models.Equipo;
+
 /**
  *
  * @author ross
  */
 public class PnlAddProyector extends javax.swing.JPanel {
 
+    private Equipo equipo;
+    private ClienteEquipos api;
+
     /**
      * Creación de nuevo panel
      */
     public PnlAddProyector() {
         initComponents();
+        equipo = new Equipo();
+        api = new ClienteEquipos();
     }
 
     /**
@@ -48,7 +58,7 @@ public class PnlAddProyector extends javax.swing.JPanel {
         jLabel4.setText("Número de Serie");
 
         jLabel6.setFont(new java.awt.Font("Roboto Lt", 1, 18)); // NOI18N
-        jLabel6.setText("Tipo");
+        jLabel6.setText("Entrada");
 
         btnCancelar.setText("Cancelar");
         btnCancelar.setColorNormal(new java.awt.Color(116, 210, 129));
@@ -66,7 +76,7 @@ public class PnlAddProyector extends javax.swing.JPanel {
             }
         });
 
-        comboBoxTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        comboBoxTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "HDMI", "VGA" }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -131,15 +141,42 @@ public class PnlAddProyector extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-        // TODO add your handling code here:
         Window pnl = SwingUtilities.getWindowAncestor(PnlAddProyector.this);
         pnl.setVisible(false);
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void rSButtonMetro2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rSButtonMetro2ActionPerformed
-        // TODO add your handling code here:
+        if (!"".equals(txtfieldSerie.getText())) {
+            if (comboBoxTipo.getSelectedIndex() == 0) {
+                equipo.setIdTipoEquipo(1);
+            } else {
+                equipo.setIdTipoEquipo(2);
+            }
+            equipo.setIdEquipo(getLastId());
+            equipo.setSerial(txtfieldSerie.getText().toUpperCase());
+            if (api.insert(equipo) != null) {
+                JOptionPane.showMessageDialog(null, "Agregado con éxito");
+            } else {
+                JOptionPane.showMessageDialog(null, "Error al agregar");
+            }
+        }else{
+            JOptionPane.showMessageDialog(null, "Debe incluir un serial");
+        }
+
     }//GEN-LAST:event_rSButtonMetro2ActionPerformed
 
+    private int getLastId() {
+        int id = 0;
+        List<Equipo> all = api.getAll();
+        for (Equipo equipo1 : all) {
+            if (id < equipo1.getIdEquipo()) {
+                id = equipo1.getIdEquipo();
+            }
+        }
+        id++;
+        return id;
+
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private rsbuttom.RSButtonMetro btnCancelar;

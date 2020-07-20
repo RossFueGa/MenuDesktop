@@ -1,18 +1,31 @@
-
 package form;
+
 import Fonts.Fuentes;
+import datadashboard.DaoApartados;
+import java.awt.BorderLayout;
 import java.awt.FontFormatException;
+import java.sql.SQLException;
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.data.category.*;
+import org.jfree.data.general.DefaultPieDataset;
 
 public class PnlConsultaDos extends javax.swing.JPanel {
- Fuentes tipoDeFuentes;
+
+    private Fuentes tipoDeFuentes;
+    private DaoApartados api;
+
     /**
      * Creates new form Panel1
      */
-    public PnlConsultaDos() throws FontFormatException {
-    
+    public PnlConsultaDos() throws FontFormatException, SQLException {
         initComponents();
+        api = new DaoApartados();
         tipoDeFuentes = new Fuentes();
         jLabelSolicitudesPrestamos.setFont(tipoDeFuentes.fuente(tipoDeFuentes.quickBold, 0, 17));
+        loadData();
     }
 
     /**
@@ -27,8 +40,6 @@ public class PnlConsultaDos extends javax.swing.JPanel {
         jPanel2 = new javax.swing.JPanel();
         jLabelSolicitudesPrestamos = new javax.swing.JLabel();
         panelLista = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jLayeredPane1 = new javax.swing.JLayeredPane();
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -46,43 +57,18 @@ public class PnlConsultaDos extends javax.swing.JPanel {
         jLabelSolicitudesPrestamos.setBackground(new java.awt.Color(127, 145, 232));
         jLabelSolicitudesPrestamos.setFont(new java.awt.Font("Roboto Lt", 1, 18)); // NOI18N
         jLabelSolicitudesPrestamos.setForeground(java.awt.Color.white);
-        jLabelSolicitudesPrestamos.setText("                                                                                Consulta Dos");
+        jLabelSolicitudesPrestamos.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabelSolicitudesPrestamos.setText("Reporte por edificio");
         jLabelSolicitudesPrestamos.setOpaque(true);
 
         panelLista.setBackground(java.awt.Color.white);
-
-        jScrollPane1.setBackground(java.awt.Color.white);
-        jScrollPane1.setBorder(null);
-
-        javax.swing.GroupLayout jLayeredPane1Layout = new javax.swing.GroupLayout(jLayeredPane1);
-        jLayeredPane1.setLayout(jLayeredPane1Layout);
-        jLayeredPane1Layout.setHorizontalGroup(
-            jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 954, Short.MAX_VALUE)
-        );
-        jLayeredPane1Layout.setVerticalGroup(
-            jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 459, Short.MAX_VALUE)
-        );
-
-        jScrollPane1.setViewportView(jLayeredPane1);
-
-        javax.swing.GroupLayout panelListaLayout = new javax.swing.GroupLayout(panelLista);
-        panelLista.setLayout(panelListaLayout);
-        panelListaLayout.setHorizontalGroup(
-            panelListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 971, Short.MAX_VALUE)
-        );
-        panelListaLayout.setVerticalGroup(
-            panelListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 456, Short.MAX_VALUE)
-        );
+        panelLista.setLayout(new java.awt.BorderLayout());
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabelSolicitudesPrestamos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jLabelSolicitudesPrestamos, javax.swing.GroupLayout.DEFAULT_SIZE, 925, Short.MAX_VALUE)
             .addComponent(panelLista, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
@@ -90,16 +76,38 @@ public class PnlConsultaDos extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jLabelSolicitudesPrestamos, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(panelLista, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(panelLista, javax.swing.GroupLayout.DEFAULT_SIZE, 409, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void loadData() throws SQLException {
+        System.out.println("Mostrando...");
+        DefaultCategoryDataset data = new DefaultCategoryDataset();
+        //DefaultPieDataset data2 = new DefaultPieDataset();
+        
+        int recordsEdificio1 = api.getRecordsEdificio("1");
+        int recordsEdificio2 = api.getRecordsEdificio("2");
+        
+        
+        final String C1 = "Edificio 1";
+        final String C2 = "Edificio 2";
+
+        data.addValue(recordsEdificio1, C1, "Préstamos de edificio 1");
+        data.addValue(recordsEdificio2, C2, "Préstamos de edificio 2");
+        
+//        data2.setValue(C1, recordsEdificio1);
+//        data2.setValue(C2, recordsEdificio2);
+
+        JFreeChart grafica = ChartFactory.createBarChart3D("Historial de préstamos por edificio", "Edificios", "Préstamos", data, PlotOrientation.VERTICAL, true, true, false);
+        //JFreeChart grafica2 = ChartFactory.createPieChart("Historial de préstamos por edificio", data2, true, true, false);
+        ChartPanel contenedor = new ChartPanel(grafica);
+        panelLista.add(contenedor, BorderLayout.CENTER);
+        panelLista.validate();
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabelSolicitudesPrestamos;
-    private javax.swing.JLayeredPane jLayeredPane1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPanel panelLista;
     // End of variables declaration//GEN-END:variables
 }
